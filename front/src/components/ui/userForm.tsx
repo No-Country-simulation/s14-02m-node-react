@@ -1,62 +1,46 @@
 "use client";
-import { IresponseGPT } from "@/interfaces/gpt.interface";
 import { Button, Select, SelectItem, Textarea } from "@nextui-org/react";
 import { useState } from "react";
 
-const defaultLang = [
-    {
-        to: "en",
-        name: "English"
-    },
-    {
-        to: "pt",
-        name: "Portugués"
-    },
-    {
-        to: "fr",
-        name: "Francés"
-    },
-]
 export default function UserForm() {
     //Se actualiza desde onValueChange
-    const [message, setMessage] = useState("");
+    const [value, setValue] = useState("");
     //Se actualiza con handleSelectionChange
-    const [langValue, setLangValue] = useState('en')
-    const [responseGPT, setResponseGPT] = useState<IresponseGPT | null>(null)
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        try {
-            if (message.trim() !== "" && langValue.trim() !== "") {
-                const response = await fetch('/api/translate', {
-                    method: 'POST',
-                    body: JSON.stringify({
-                        message: message,
-                        to: langValue
-                    })
-                })
-                const parseRes: IresponseGPT = await response.json()
-                console.log(parseRes);
-                setResponseGPT(parseRes)
-            } else {
-                alert("Por favor complete todos los campos...");
-            }
-        } catch (error) {
-            console.log({ error });
+    const [langValue, setLangValue] = useState("")
+
+    console.log("This is value: ", value);
+    console.log("This is langValue:", langValue)
+
+    //Array con idiomas disponibles para traducir
+    const languages = ["Inglés","Portugués"]
+
+
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        if (value.trim() !== "" && langValue.trim() !== "") {
+            console.log("Traduciendo...");
+        } else {
+            alert("Por favor complete todos los campos...");
         }
     };
+
+    //Handler del input de selección, ya que no deja hace set del estado desde la propiedad.
+    const handleSelectionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        setLangValue(e.target.value);
+    }
 
     return (
         <>
             <div className="form-wrapper w-full mt-4">
-                <form
-                    className="flex flex-col gap-4"
+                <form 
+                    className="flex flex-col gap-4" 
                     onSubmit={handleSubmit}>
                     <Textarea
                         label="Introduce el texto a traducir aquí..."
                         color="primary"
                         radius="lg"
                         variant="faded"
-                        onValueChange={setMessage}
+                        onValueChange={setValue}
                     />
                     <Select
                         className=""
@@ -64,15 +48,13 @@ export default function UserForm() {
                         radius="lg"
                         variant="faded"
                         label="Idioma de salida"
-                        // onSelectionChange={setLangValue}
-                        onChange={(e) => setLangValue(e.target.value)}
-                    >
+                        onChange={handleSelectionChange}>
                         {
-                            defaultLang.map((lang) => (
-                                <SelectItem key={lang.to} value={lang.to}>
-                                    {lang.name}
+                            languages.map((lang:string) => (
+                                <SelectItem key={lang}>
+                                    {lang}
                                 </SelectItem>
-                            ))
+                            ))       
                         }
                     </Select>
                     <Button
@@ -81,11 +63,6 @@ export default function UserForm() {
                         color="secondary"
                     />
                 </form>
-                {responseGPT && <>
-                    Respuesta ChatGPT: {responseGPT.translated}
-                    <br></br>
-                    Idioma: {responseGPT.from}
-                </>}
             </div>
         </>
     );

@@ -7,7 +7,7 @@ import {NextUIProvider} from "@nextui-org/react";
 export default function NextUiProvider({children}: {children: React.ReactNode}) {
   // 2. Wrap NextUIProvider at the root of your app
   return (
-    <NextUIProvider>
+    <NextUIProvider className="h-screen">
       {children}
     </NextUIProvider>
   );
