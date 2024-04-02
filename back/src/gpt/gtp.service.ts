@@ -8,7 +8,7 @@ export class GptService {
   constructor() {
     try {
       this.gptInstance = new OpenAI({
-        apiKey: process.env.OPENAI_API_KEY, 
+        apiKey: process.env.GPT_KEY, 
       });
     } catch (error) {
       console.error('Error al inicializar GPT:', error);
