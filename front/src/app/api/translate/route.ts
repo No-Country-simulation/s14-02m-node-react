@@ -3,8 +3,6 @@ import { NextRequest, NextResponse } from 'next/server'
 export const POST = async (req: NextRequest) => {
 
   const body: {message: string, to: string} = await req.json()
-  // const body = await req.json()
-  console.log(body);
   const model = process.env.GPT_MODEL
   const apikey = process.env.GPT_KEY
   
