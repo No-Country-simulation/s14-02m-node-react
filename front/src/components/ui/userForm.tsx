@@ -3,10 +3,20 @@ import { IresponseGPT } from "@/interfaces/gpt.interface";
 import { Button, Select, SelectItem, Textarea } from "@nextui-org/react";
 import { useState } from "react";
 
-const defaultLang = [{
-    to: "en",
-    name: "English"
-}]
+const defaultLang = [
+    {
+        to: "en",
+        name: "English"
+    },
+    {
+        to: "pt",
+        name: "Portugués"
+    },
+    {
+        to: "fr",
+        name: "Francés"
+    },
+]
 export default function UserForm() {
     //Se actualiza desde onValueChange
     const [message, setMessage] = useState("");
@@ -15,7 +25,7 @@ export default function UserForm() {
     const [responseGPT, setResponseGPT] = useState<IresponseGPT | null>(null)
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        try {            
+        try {
             if (message.trim() !== "" && langValue.trim() !== "") {
                 const response = await fetch('/api/translate', {
                     method: 'POST',
@@ -31,15 +41,15 @@ export default function UserForm() {
                 alert("Por favor complete todos los campos...");
             }
         } catch (error) {
-            console.log({error});
+            console.log({ error });
         }
     };
 
     return (
         <>
             <div className="form-wrapper w-full mt-4">
-                <form 
-                    className="flex flex-col gap-4" 
+                <form
+                    className="flex flex-col gap-4"
                     onSubmit={handleSubmit}>
                     <Textarea
                         label="Introduce el texto a traducir aquí..."
@@ -56,13 +66,13 @@ export default function UserForm() {
                         label="Idioma de salida"
                         // onSelectionChange={setLangValue}
                         onChange={(e) => setLangValue(e.target.value)}
-                        >
+                    >
                         {
                             defaultLang.map((lang) => (
                                 <SelectItem key={lang.to} value={lang.to}>
                                     {lang.name}
                                 </SelectItem>
-                            ))       
+                            ))
                         }
                     </Select>
                     <Button
