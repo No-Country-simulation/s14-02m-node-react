@@ -1,5 +1,3 @@
-"use client";
-
 import UserForm from "@/components/ui/userForm";
 
 export default function Home() {
