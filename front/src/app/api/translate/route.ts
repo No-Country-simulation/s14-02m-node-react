@@ -1,21 +1,21 @@
 import { NextRequest, NextResponse } from 'next/server'
 
 export const POST = async (req: NextRequest) => {
-  const body = await req.text()
-  const [messageUnparse, toUnparse] = body.split('&')
-  const [_key, message] = messageUnparse.split('=')
-  const [__key, to] = toUnparse.split('=')
+
+  const body: {message: string, to: string} = await req.json()
+  // const body = await req.json()
+  console.log(body);
   const model = process.env.GPT_MODEL
   const apikey = process.env.GPT_KEY
   
   const messages = [
     {
       "role": "system",
-      "content": `Traduce la frase del usuario al idioma ${to} según formato iso-639-1, debes responder en formato JSON con propiedades "from" que sería el formato iso-639-1 del idioma original escrito por el usuario, además una segunda propiedad "translated" que sería el idioma traducido.`
+      "content": `Traduce la frase del usuario al idioma ${body.to} según formato iso-639-1, debes responder en formato JSON con propiedades "from" que sería el formato iso-639-1 del idioma original escrito por el usuario, además una segunda propiedad "translated" que sería el idioma traducido.`
     },
     {
       "role": "user",
-      "content": message
+      "content": body.message
     }
   ]
     
