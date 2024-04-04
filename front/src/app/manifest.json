@@ -6,7 +6,7 @@
     "start_url": "/",
     "name": "TraductorApp",
     "short_name": "TraductorApp",
-    "description": "Application that allows translating in everyday life.",
+    "description": "Application that allows translating in everyday life",
     "icons": [
         {
             "src": "/icon-192x192.png",
