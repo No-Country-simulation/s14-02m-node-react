@@ -26,6 +26,7 @@ export const POST = async (req: NextRequest) => {
         body: JSON.stringify({messages, model, response_format: { "type": "json_object" }})
       })
       const response = await fetchgpt.json()
+      console.log(response)
       const parseGPT = JSON.parse(response.choices[0].message.content)
       return NextResponse.json(parseGPT)
     }
