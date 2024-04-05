@@ -25,6 +25,7 @@ export default function UserForm() {
     const [responseGPT, setResponseGPT] = useState<IresponseGPT | null>(null)
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+       
         try {
             if (message.trim() !== "" && langValue.trim() !== "") {
                 const response = await fetch('/api/translate', {
@@ -34,6 +35,7 @@ export default function UserForm() {
                         to: langValue
                     })
                 })
+                console.log(response)
                 const parseRes: IresponseGPT = await response.json()
                 console.log(parseRes);
                 setResponseGPT(parseRes)
