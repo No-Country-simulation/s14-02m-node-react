@@ -1,4 +1,4 @@
-import UserForm from "@/components/ui/userForm";
+import UserForm from "@/components/Forms/userForm";
 
 export default function Home() {
     return (
