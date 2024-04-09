@@ -2,7 +2,8 @@
 /dist
 /node_modules
 /build
-
+/audio/*
+!/audio/
 # Logs
 logs
 *.log
