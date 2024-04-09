@@ -23,9 +23,10 @@ export class GptController {
           const result = await this.gptService.convertToAudio(text);
   
           if (result.success) {
+            const uniqueFilename = `translated_audio_${Date.now()}.mp3`;
               // Configura los encabezados de la respuesta HTTP para enviar el archivo de audio
               response.set('Content-Type', 'audio/mpeg');
-              response.set('Content-Disposition', 'attachment; filename="translated_audio.mp3"');
+              response.set('Content-Disposition', `attachment; filename="${uniqueFilename}"`);
   
               // Envía el contenido del archivo de audio al cliente como respuesta
               response.send(result.audioContent);
