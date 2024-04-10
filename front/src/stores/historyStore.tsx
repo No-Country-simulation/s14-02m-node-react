@@ -1,15 +1,15 @@
 "use client";
 
-import { IresponseGPT } from "@/interfaces/gpt.interface";
+import { IHistory } from "@/interfaces/gpt.interface";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
 type State = {
-	history: IresponseGPT[];
+	history: IHistory[];
 };
 
 type Action = {
-	updateHistory: (response: IresponseGPT) => void;
+	updateHistory: (response: IHistory) => void;
 };
 
 export const useHistoryStore = create(

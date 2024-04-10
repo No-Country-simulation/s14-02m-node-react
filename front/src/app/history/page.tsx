@@ -17,7 +17,7 @@ export default function HistoryPage() {
 				{history.map((item, index) => (
 					<li key={index}>
 						<p>Mensaje:{item.message}</p>
-						<p>Del:{item.langCode}</p>
+						<p>Idioma:{item.langCode}</p>
 						<p>Rol:{item.rol}</p>
 					</li>
 				))}

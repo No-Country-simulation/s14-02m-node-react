@@ -1,6 +1,4 @@
 "use client";
-
-import { IresponseGPT } from "@/interfaces/gpt.interface";
 import { Button, Select, SelectItem, Textarea } from "@nextui-org/react";
 import { useState } from "react";
 import ResponseGPT from "@/components/responseGPT";
