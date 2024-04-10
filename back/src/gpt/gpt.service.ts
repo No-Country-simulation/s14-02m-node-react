@@ -38,7 +38,7 @@ export class GptService {
     return response.choices[0].message.content;
   }
 
-  async convertToAudio(text: string): Promise<{ success: boolean, message?: string, audioContent?: Buffer }> {
+  async convertToAudio(text: string): Promise<{ success: boolean, message?: string, audioUrl?: string }> {
     try {
         if (text.trim() === '') {
             const errorMessage = "El texto proporcionado está vacío. Por favor, proporcione un texto válido para convertir a audio.";
@@ -60,10 +60,11 @@ export class GptService {
         // Guarda el archivo localmente
         fs.writeFileSync(speechFile, buffer);
 
-        // Lee el archivo y devuelve su contenido
-        const audioContent = fs.readFileSync(speechFile);
+        // Devuelve la URL del archivo de audio
+        const audioUrl = `./audio/${uniqueId}.mp3`;
 
-        return { success: true, audioContent };
+        return { success: true, audioUrl };
+
     } catch (error) {
         const errorMessage = "Error al convertir texto a audio: " + error.message;
         return { success: false, message: errorMessage };
