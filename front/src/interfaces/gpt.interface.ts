@@ -1,4 +1,7 @@
+import { IUser } from "./user.interface";
+
 export interface IresponseGPT {
-    from: string, 
-    translated: string
+    langCode: string,
+    message: string,
+    rol: IUser
 }
