@@ -61,7 +61,7 @@ export class GptService {
         fs.writeFileSync(speechFile, buffer);
 
         // Devuelve la URL del archivo de audio
-        const audioUrl = `./audio/${uniqueId}.mp3`;
+        const audioUrl = `/audio/${uniqueId}.mp3`;
 
         return { success: true, audioUrl };
 
