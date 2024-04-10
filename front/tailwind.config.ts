@@ -19,6 +19,7 @@ const config: Config = {
         "secundario": "6246ea",
         "acento": "e45858",
         "blanco": "FFFFFE",
+        "negro": "2b2c34"
       }
     },
   },

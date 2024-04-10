@@ -1,6 +1,10 @@
-import { IresponseGPT } from "@/interfaces/gpt.interface";
+import { IBackendResponse } from "@/interfaces/backendResponseText.interface";
 
-export default function ResponseGPT({ response }: { response: IresponseGPT }) {
+export default function ResponseGPT({
+	response,
+}: {
+	response: IBackendResponse;
+}) {
 	return (
 		<>
 			Respuesta ChatGPT:

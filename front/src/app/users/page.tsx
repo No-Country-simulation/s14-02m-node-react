@@ -1,8 +1,7 @@
-
-export default function UsersPage(){
-    return (
-        <>
-            <p>Sección de usuarios</p>
-        </>
-    )
+export default function UsersPage() {
+	return (
+		<>
+			<p>Sección de usuarios</p>
+		</>
+	);
 }
