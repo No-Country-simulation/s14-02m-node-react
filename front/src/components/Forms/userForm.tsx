@@ -1,7 +1,7 @@
 "use client";
 import { Button, Select, SelectItem, Textarea } from "@nextui-org/react";
 import {Autocomplete, AutocompleteItem} from "@nextui-org/react";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, Key, useState } from "react";
 import ResponseGPT from "@/components/responseGPT";
 import { defaultLang } from "@/configs/defaultLang";
 import { useHistoryStore } from "@/stores/historyStore";
@@ -65,9 +65,8 @@ export default function UserForm() {
 		}
 	};
 	// console.log("Log de history en userForm", history);
-	const handleSelectChange = (e: ChangeEvent<HTMLInputElement>) => {
-		e.preventDefault()
-		setLangValue(e.target.value)
+	const handleSelectChange = (langCode: Key) => {
+		setLangValue(langCode as string)
 	}
 	return (
 		<>
@@ -86,7 +85,7 @@ export default function UserForm() {
 						radius="lg"
 						variant="faded"
 						label="Idioma de salida"
-						onChange={handleSelectChange}
+						onSelectionChange={handleSelectChange}
 					>
 						{defaultLang.map((lang) => (
 							<AutocompleteItem key={lang.to} value={lang.to}>

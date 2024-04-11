@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
 
 export const POST = async (req: NextRequest) => {
-
   const body: { message: string, to: string } = await req.json()
-  const fetchgpt = await fetch('https://s14-02m-node-react.onrender.com/api/translate', {
+  const fetchgpt = await fetch(`${process.env.BACKEND_URL}/api/translate`, {
+    cache: 'no-cache',
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
