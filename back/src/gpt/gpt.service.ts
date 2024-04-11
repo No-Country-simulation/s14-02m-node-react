@@ -3,6 +3,7 @@ import { OpenAI } from 'openai';
 import { Payload } from './interfaces/payload.interface';
 import * as fs from 'fs';
 import { resolve } from "path";
+import * as crypto from 'crypto';
 
 @Injectable()
 export class GptService {
@@ -45,8 +46,8 @@ export class GptService {
             return { success: false, message: errorMessage };
         }
 
-        // Genera un identificador único para el archivo de audio
-        const uniqueId = new Date().getTime().toString();
+        // Genera un identificador único para el archivo de audio usando crypto
+        const uniqueId = crypto.randomBytes(16).toString('hex');
         const speechFile = resolve(`${this.audioFolder}/${uniqueId}.mp3`);
 
         const mp3 = await this.openai.audio.speech.create({
