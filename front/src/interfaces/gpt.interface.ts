@@ -1,4 +1,7 @@
-export interface IresponseGPT {
-    from: string, 
-    translated: string
+import { ILanguageCodes, IChatRol } from "./user.interface";
+
+export interface IHistory {
+    langCode: ILanguageCodes,
+    message: string,
+    rol: IChatRol
 }
