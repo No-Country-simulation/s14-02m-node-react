@@ -4,16 +4,13 @@ import { IHistory } from "@/interfaces/gpt.interface";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
-type State = {
+interface HistoryZustand {
 	history: IHistory[];
-};
-
-type Action = {
 	updateHistory: (response: IHistory) => void;
-};
+}
 
 export const useHistoryStore = create(
-	persist<State & Action>(
+	persist<HistoryZustand>(
 		(set) => ({
 			history: [],
 			updateHistory: (response) =>

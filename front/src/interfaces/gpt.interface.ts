@@ -1,7 +1,7 @@
-import { IUser } from "./user.interface";
+import { ILanguageCodes, IChatRol } from "./user.interface";
 
 export interface IHistory {
-    langCode: string,
+    langCode: ILanguageCodes,
     message: string,
-    rol: IUser
+    rol: IChatRol
 }

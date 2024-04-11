@@ -1,14 +1,15 @@
 "use client";
 import { Button, Select, SelectItem, Textarea } from "@nextui-org/react";
-import { useState } from "react";
+import {Autocomplete, AutocompleteItem} from "@nextui-org/react";
+import { ChangeEvent, useState } from "react";
 import ResponseGPT from "@/components/responseGPT";
 import { defaultLang } from "@/configs/defaultLang";
 import { useHistoryStore } from "@/stores/historyStore";
 import Link from "next/link";
-import { IBackendResponse } from "@/interfaces/backendResponseText.interface";
+import { IBackendResponse } from "@/interfaces/backRes.interface"; 
+import { ChatRol, ILanguageCodes } from "@/interfaces/user.interface";
 
 export default function UserForm() {
-	let loading = false;
 	//Se actualiza desde onValueChange
 	const [message, setMessage] = useState("");
 	//Se actualiza con handleSelectionChange, es el lenguaje de salida.
@@ -22,8 +23,7 @@ export default function UserForm() {
 
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		loading = true;
-		setListenLoading(loading);
+		setListenLoading(true);
 		// console.log("loading previo a try", loading);
 		try {
 			if (message.trim() !== "" && langValue.trim() !== "") {
@@ -46,18 +46,17 @@ export default function UserForm() {
 				setResponseGPT(parseRes);
 				//Actualiza el store con la solicitud del usuario
 				updateHistory({
-					langCode: parseRes.from,
+					langCode: parseRes.from as ILanguageCodes,
 					message: tempUserMessage.message,
-					rol: "user",
+					rol: ChatRol.USER,
 				});
 				//Actualiza el store con la respuesta de la API.
 				updateHistory({
-					langCode: tempUserMessage.langCode,
+					langCode: tempUserMessage.langCode as ILanguageCodes,
 					message: parseRes.translated,
-					rol: "ia",
+					rol: ChatRol.IA,
 				});
-				loading = false;
-				setListenLoading(loading);
+				setListenLoading(false);
 			} else {
 				alert("Por favor complete todos los campos...");
 			}
@@ -65,8 +64,11 @@ export default function UserForm() {
 			console.log({ error });
 		}
 	};
-	console.log("Log de history en userForm", history);
-
+	// console.log("Log de history en userForm", history);
+	const handleSelectChange = (e: ChangeEvent<HTMLInputElement>) => {
+		e.preventDefault()
+		setLangValue(e.target.value)
+	}
 	return (
 		<>
 			<div className="form-wrapper w-full mt-4">
@@ -78,24 +80,24 @@ export default function UserForm() {
 						variant="faded"
 						onValueChange={setMessage}
 					/>
-					<Select
+					<Autocomplete
 						className=""
 						color="primary"
 						radius="lg"
 						variant="faded"
 						label="Idioma de salida"
-						onChange={(e) => setLangValue(e.target.value)}
+						onChange={handleSelectChange}
 					>
 						{defaultLang.map((lang) => (
-							<SelectItem key={lang.to} value={lang.to}>
+							<AutocompleteItem key={lang.to} value={lang.to}>
 								{lang.name}
-							</SelectItem>
+							</AutocompleteItem>
 						))}
-					</Select>
+					</Autocomplete>
 					{/* Renderiza condicionalmente los botones con el spinner en función de listenLoading*/}
 					{listenLoading ? (
 						<Button
-							children="Traducir"
+							children="Traduciendo"
 							type="submit"
 							color="secondary"
 							isLoading={true}

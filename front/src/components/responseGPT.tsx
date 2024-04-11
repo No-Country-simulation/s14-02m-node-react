@@ -1,4 +1,4 @@
-import { IBackendResponse } from "@/interfaces/backendResponseText.interface";
+import { IBackendResponse } from "@/interfaces/backRes.interface";
 
 export default function ResponseGPT({
 	response,
