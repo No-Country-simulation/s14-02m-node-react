@@ -28,7 +28,7 @@ export default function Nav() {
 				/>
 				<NavbarBrand>
 					<Image
-						src="/navbar/app-logo.png"
+						src="/Navbar/app-logo.png"
 						alt="Brand icon"
 						width={52.5}
 						height={48}
@@ -83,14 +83,14 @@ export default function Nav() {
 						>
 							{item === "Ayuda" ? (
 								<>
-									<Image src="/navbar/help.png" alt="help-icon" width={24} height={24} />
+									<Image src="/Navbar/help.png" alt="help-icon" width={24} height={24} />
 									<>{item}</>
 								</>
 							) : item === "Sobre nosotros" ? (
 								<>
 									{" "}
 									<Image
-										src="/navbar/about-us.png"
+										src="/Navbar/about-us.png"
 										alt="help-icon"
 										width={24}
 										height={24}
@@ -100,7 +100,7 @@ export default function Nav() {
 							) : (
 								<>
 									<Image
-										src="/navbar/chat-bubble.png"
+										src="/Navbar/chat-bubble.png"
 										alt="empty-space"
 										width={24}
 										height={24}
