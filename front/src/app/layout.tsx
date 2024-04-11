@@ -4,6 +4,7 @@ import "./globals.css";
 import NextUiProvider from "@/components/provider-nextui";
 import Footer from "@/components/Footer/footer";
 import icons from "@/components/Footer/ArrayIcons";
+import Nav from "@/components/Navbar/navbar";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -20,6 +21,7 @@ export default function RootLayout({
 		<html lang="en">
 			<body className={inter.className}>
 				<NextUiProvider>
+					<Nav />
 					{children}
 					<Footer appName="Transiapp" iconItems={icons} />
 				</NextUiProvider>
