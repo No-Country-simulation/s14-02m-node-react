@@ -1,6 +1,6 @@
 # TalkIAmos
 
-TranslApp es una herramienta de traducción de texto que utiliza la API de OpenAI y permite traducir rápidamente texto de un idioma a otro. Actualmente soporta los idiomas español inglés, portugués y francés.
+TalkIAmos es unaTalkIAmos es una herramienta de traducción de texto que utiliza la tecnología de OpenAi para procesar el lenguaje natural y traducir rápidamente texto de un idioma a otro. Actualmente soporta los idiomas español inglés, portugués y francés.
 
 ## Tecnologías
 
