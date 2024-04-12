@@ -5,27 +5,35 @@ TalkIAmos es unaTalkIAmos es una herramienta de traducción de texto que utiliza
 ## Tecnologías
 
 **Framework:** 
+
 ![NextJs](https://img.shields.io/badge/next%20js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)
 
 **Frontend:** 
+
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB) ![NextUI](https://img.shields.io/badge/next%20UI-000000?style=for-the-badge&logo=nextdotjs&logoColor=white) ![Typescript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white) ![Zustand](https://img.shields.io/badge/zustand-%2320232a.svg?style=for-the-badge) ![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
 
 **Backend:** 
+
 ![NodeJS](https://img.shields.io/badge/Node%20js-43853D?style=for-the-badge&logo=node.js&logoColor=white) ![NestJS](https://img.shields.io/badge/Nest.js-E50914?style=for-the-badge&logo=nestjs&logoColor=white)
 
 **Database:** 
+
 ![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
 
 **API:**
+
 ![OpenAI](https://img.shields.io/badge/Open%20AI-74aa9c?style=for-the-badge&logo=openai&logoColor=white)
 
 **UX/UI:** 
+
 ![Figma](https://img.shields.io/badge/figma-%23F24E1E.svg?style=for-the-badge&logo=figma&logoColor=white)
 
 **Testing:** 
+
 ![Excel](https://img.shields.io/badge/Microsoft_Excel-217346?style=for-the-badge&logo=microsoft-excel&logoColor=white)
 
 **Gestión de tareas:** 
+
 ![Trello](https://img.shields.io/badge/Trello-%23026AA7.svg?style=for-the-badge&logo=Trello&logoColor=white)
 
 ## Instalación
