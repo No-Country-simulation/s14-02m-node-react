@@ -7,6 +7,7 @@ import { persist } from "zustand/middleware";
 interface HistoryZustand {
 	history: IHistory[];
 	updateHistory: (response: IHistory) => void;
+	cleanHistory: () => void;
 }
 
 export const useHistoryStore = create(
@@ -17,6 +18,7 @@ export const useHistoryStore = create(
 				set((state) => ({
 					history: [...state.history, response],
 				})),
+			cleanHistory: () => set({history: []}),
 		}),
 		{ name: "history" }
 	)

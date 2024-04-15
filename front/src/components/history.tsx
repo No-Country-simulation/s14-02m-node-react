@@ -1,18 +1,18 @@
+'use client'
 import { useHistoryStore } from "@/stores/historyStore";
 import ChatMessage from "./chatMessage";
+import { Button } from "@nextui-org/react";
 
 export default function History() {
 	//1. Me traigo el historial del store
-	const history = useHistoryStore((state) => state.history);
-	// console.log({ history });
-	return (
-		<div>
-			<ul>
+	const { history, cleanHistory } = useHistoryStore();
+	if(history.length > 0) return (
+		<div className="w-full">
+			<div className="grid grid-cols-2 gap-4 my-auto bg-slate-50 py-3 px-3 rounded-xl">
 				{/*3. Mapeo una lista con los objetos del array history*/}
-				{history.map((chat) => (
-					<ChatMessage key={chat.message} chat={chat} />
-				))}
-			</ul>
+				{ history.map((chat) => <ChatMessage key={chat.message} chat={chat} />) }
+			</div>
+			<Button onClick={() => cleanHistory()}>Borrar conversaciones</Button>
 		</div>
 	);
 }
