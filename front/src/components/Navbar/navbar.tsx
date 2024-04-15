@@ -40,7 +40,7 @@ export default function Nav() {
 			</NavbarContent>
 
 			<NavbarContent className="hidden sm:flex gap-4" justify="center">
-				<NavbarItem>
+				<NavbarItem isActive>
 					<Link color="foreground" href="#">
 						Historial
 					</Link>
@@ -50,7 +50,7 @@ export default function Nav() {
 						Ayuda
 					</Link>
 				</NavbarItem>
-				<NavbarItem>
+				<NavbarItem isActive>
 					<Link color="foreground" href="#">
 						Sobre Nosotros
 					</Link>

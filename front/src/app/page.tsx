@@ -1,5 +1,4 @@
 import UserForm from "@/components/Forms/userForm";
-import { ILanguageCodes } from "@/interfaces/user.interface";
 
 export default function Home() {
 	return (
