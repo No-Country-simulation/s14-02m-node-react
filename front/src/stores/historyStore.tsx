@@ -4,6 +4,12 @@ import { IHistory } from "@/interfaces/gpt.interface";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
+// interface Bubble {
+//  id: string
+// 	user: IHistory
+// 	ia: IHistory,
+// }
+
 interface HistoryZustand {
 	history: IHistory[];
 	updateHistory: (response: IHistory) => void;
