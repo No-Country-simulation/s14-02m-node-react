@@ -1,12 +1,12 @@
 "use client";
 import { Button, Select, SelectItem, Textarea } from "@nextui-org/react";
-import {Autocomplete, AutocompleteItem} from "@nextui-org/react";
+import { Autocomplete, AutocompleteItem } from "@nextui-org/react";
 import { ChangeEvent, Key, useState } from "react";
 import ResponseGPT from "@/components/responseGPT";
 import { defaultLang } from "@/configs/defaultLang";
 import { useHistoryStore } from "@/stores/historyStore";
 import Link from "next/link";
-import { IBackendResponse } from "@/interfaces/backRes.interface"; 
+import { IBackendResponse } from "@/interfaces/backRes.interface";
 import { ChatRol, ILanguageCodes } from "@/interfaces/user.interface";
 
 export default function UserForm() {
@@ -66,24 +66,24 @@ export default function UserForm() {
 	};
 	// console.log("Log de history en userForm", history);
 	const handleSelectChange = (langCode: Key) => {
-		setLangValue(langCode as string)
-	}
+		setLangValue(langCode as string);
+	};
+
 	return (
 		<>
 			<div className="form-wrapper w-full mt-4">
 				<form className="flex flex-col gap-4" onSubmit={handleSubmit}>
 					<Textarea
-						label="Introduce el texto a traducir aquí..."
+						className="customTheme"
+						placeholder="Introduce tu texto"
 						color="primary"
 						radius="lg"
-						variant="faded"
+						variant="bordered"
 						onValueChange={setMessage}
 					/>
 					<Autocomplete
-						className=""
-						color="primary"
 						radius="lg"
-						variant="faded"
+						variant="bordered"
 						label="Idioma de salida"
 						onSelectionChange={handleSelectChange}
 					>
@@ -96,16 +96,18 @@ export default function UserForm() {
 					{/* Renderiza condicionalmente los botones con el spinner en función de listenLoading*/}
 					{listenLoading ? (
 						<Button
+							className="customTheme w-40"
 							children="Traduciendo"
 							type="submit"
-							color="secondary"
+							color="primary"
 							isLoading={true}
 						/>
 					) : (
 						<Button
+							className="customTheme w-40"
 							children="Traducir"
 							type="submit"
-							color="secondary"
+							color="primary"
 							isLoading={false}
 						/>
 					)}
