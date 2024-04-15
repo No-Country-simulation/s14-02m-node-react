@@ -86,6 +86,7 @@ export default function UserForm() {
 						variant="faded"
 						label="Idioma de salida"
 						onSelectionChange={handleSelectChange}
+						defaultSelectedKey={langValue}
 					>
 						{defaultLang.map((lang) => (
 							<AutocompleteItem key={lang.to} value={lang.to}>

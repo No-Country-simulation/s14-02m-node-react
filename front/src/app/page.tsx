@@ -1,4 +1,5 @@
 import UserForm from "@/components/Forms/userForm";
+import History from "@/components/history";
 
 export default function Home() {
 	return (
@@ -11,6 +12,7 @@ export default function Home() {
 				<h2>Traduce de manera simple y eficaz todo lo que quieras</h2>
 			</div>
 			<div className="flex flex-col justify-center items-center w-11/12 h-screen mx-auto">
+				<History />
 				<UserForm />
 			</div>
 		</>
