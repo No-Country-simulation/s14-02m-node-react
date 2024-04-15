@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { useHistoryStore } from "@/stores/historyStore";
 import ChatMessage from "./chatMessage";
 import { Button } from "@nextui-org/react";
