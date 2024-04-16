@@ -1,28 +1,25 @@
 "use client";
 import { Button, Textarea } from "@nextui-org/react";
 import { Autocomplete, AutocompleteItem } from "@nextui-org/react";
-import { ChangeEvent, Key, useState } from "react";
-import ResponseGPT from "@/components/responseGPT";
+import { Key, useState } from "react";
 import { defaultLang } from "@/configs/defaultLang";
 import { useHistoryStore } from "@/stores/historyStore";
-import Link from "next/link";
 import { IBackendResponse } from "@/interfaces/backRes.interface";
 import { ChatRol, ILanguageCodes } from "@/interfaces/user.interface";
 import crypto from "crypto";
+import { IGroupedMessage, ISingleMessage } from "@/interfaces/message.interface";
 
 export default function UserForm() {
 	//Se actualiza desde onValueChange
 	const [message, setMessage] = useState("");
 	//Se actualiza con handleSelectionChange, es el lenguaje de salida.
-	const [langValue, setLangValue] = useState("en");
-	const [responseGPT, setResponseGPT] = useState<IBackendResponse | null>(null);
+	const [langValue, setLangValue] = useState<ILanguageCodes>("en");
 	//listenLoading determina si se renderiza el boton con spiner o no.
 	const [listenLoading, setListenLoading] = useState(false);
 	//Me traigo el historial de zustand
-	const history = useHistoryStore((state) => state.history);
-	const updateHistory = useHistoryStore((state) => state.updateHistory);
+	const { updateHistory } = useHistoryStore();
 
-	const msgId = crypto.randomBytes(20).toString("hex");
+	const msgId = crypto.randomBytes(8).toString("hex");
 
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
@@ -31,10 +28,10 @@ export default function UserForm() {
 		try {
 			if (message.trim() !== "" && langValue.trim() !== "") {
 				//Crea una variable temporal para que almacene mensaje e idioma de la petición del usuario
-				const tempUserMessage = {
+				const tempUserMessage: ISingleMessage = {
 					langCode: langValue,
 					message: message,
-					rol: "user",
+					rol: ChatRol.USER,
 				};
 				const response = await fetch("/api/translate", {
 					method: "POST",
@@ -45,22 +42,22 @@ export default function UserForm() {
 				});
 				// console.log(response)
 				const parseRes: IBackendResponse = await response.json();
-				// console.log(parseRes);
-				setResponseGPT(parseRes);
+				const messageBubble: IGroupedMessage = {
+					id: msgId,
+					client: {
+						langCode: parseRes.from as ILanguageCodes,
+						message: tempUserMessage.message,
+						rol: ChatRol.USER,
+					},
+					response: {
+						langCode: tempUserMessage.langCode as ILanguageCodes,
+						message: parseRes.translated,
+						rol: ChatRol.IA,
+					}
+				}
 				//Actualiza el store con la solicitud del usuario
-				updateHistory({
-					id: msgId,
-					langCode: parseRes.from as ILanguageCodes,
-					message: tempUserMessage.message,
-					rol: ChatRol.USER,
-				});
+				updateHistory(messageBubble);
 				//Actualiza el store con la respuesta de la API.
-				updateHistory({
-					id: msgId,
-					langCode: tempUserMessage.langCode as ILanguageCodes,
-					message: parseRes.translated,
-					rol: ChatRol.IA,
-				});
 				setListenLoading(false);
 			} else {
 				alert("Por favor complete todos los campos...");
@@ -71,7 +68,8 @@ export default function UserForm() {
 	};
 	// console.log("Log de history en userForm", history);
 	const handleSelectChange = (langCode: Key) => {
-		setLangValue(langCode as string);
+		const selectedLang = langCode.toString() as ILanguageCodes
+		setLangValue(selectedLang);
 	};
 	return (
 		<>
@@ -116,10 +114,6 @@ export default function UserForm() {
 						/>
 					)}
 				</form>
-				{responseGPT && <ResponseGPT response={responseGPT} />}
-				<Button>
-					<Link href="/history">To history</Link>
-				</Button>
 			</div>
 		</>
 	);

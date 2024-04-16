@@ -1,12 +1,12 @@
 "use client";
 
-import { IHistory } from "@/interfaces/gpt.interface";
+import { IGroupedMessage } from "@/interfaces/message.interface";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
 interface HistoryZustand {
-	history: IHistory[];
-	updateHistory: (response: IHistory) => void;
+	history: IGroupedMessage[];
+	updateHistory: (response: IGroupedMessage) => void;
 	cleanHistory: () => void;
 }
 
