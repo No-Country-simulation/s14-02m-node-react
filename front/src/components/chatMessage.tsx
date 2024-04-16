@@ -1,6 +1,7 @@
 import { IGroupedMessage, ISingleMessage } from "@/interfaces/message.interface";
 import { filterLanguage } from "@/utils/filterLanguage";
 import Image from "next/image";
+import PlayButton from "./playButton";
 
 export default function ChatMessage({ chat }: { chat: IGroupedMessage }) {
 	return (
