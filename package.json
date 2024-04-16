@@ -1,0 +1,13 @@
+{
+  "name": "s14-02m-node-react",
+  "version": "1.0.0",
+  "description": "TalkIAmos es una herramienta de traducción de texto que utiliza la API de OpenAI y permite traducir rápidamente texto de un idioma a otro. Actualmente soporta los idiomas español inglés, portugués y francés.",
+  "main": "index.js",
+  "scripts": {
+    "front": "cd front && npm run dev",
+    "back": "cd back && npm run start:dev"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

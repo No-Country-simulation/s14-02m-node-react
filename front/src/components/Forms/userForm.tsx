@@ -1,5 +1,5 @@
 "use client";
-import { Button, Select, SelectItem, Textarea } from "@nextui-org/react";
+import { Button, Textarea } from "@nextui-org/react";
 import { Autocomplete, AutocompleteItem } from "@nextui-org/react";
 import { ChangeEvent, Key, useState } from "react";
 import ResponseGPT from "@/components/responseGPT";
@@ -8,6 +8,7 @@ import { useHistoryStore } from "@/stores/historyStore";
 import Link from "next/link";
 import { IBackendResponse } from "@/interfaces/backRes.interface";
 import { ChatRol, ILanguageCodes } from "@/interfaces/user.interface";
+import crypto from "crypto";
 
 export default function UserForm() {
 	//Se actualiza desde onValueChange
@@ -20,6 +21,8 @@ export default function UserForm() {
 	//Me traigo el historial de zustand
 	const history = useHistoryStore((state) => state.history);
 	const updateHistory = useHistoryStore((state) => state.updateHistory);
+
+	const msgId = crypto.randomBytes(20).toString("hex");
 
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
@@ -46,12 +49,14 @@ export default function UserForm() {
 				setResponseGPT(parseRes);
 				//Actualiza el store con la solicitud del usuario
 				updateHistory({
+					id: msgId,
 					langCode: parseRes.from as ILanguageCodes,
 					message: tempUserMessage.message,
 					rol: ChatRol.USER,
 				});
 				//Actualiza el store con la respuesta de la API.
 				updateHistory({
+					id: msgId,
 					langCode: tempUserMessage.langCode as ILanguageCodes,
 					message: parseRes.translated,
 					rol: ChatRol.IA,
@@ -68,7 +73,6 @@ export default function UserForm() {
 	const handleSelectChange = (langCode: Key) => {
 		setLangValue(langCode as string);
 	};
-
 	return (
 		<>
 			<div className="form-wrapper w-full mt-4">
@@ -86,6 +90,7 @@ export default function UserForm() {
 						variant="bordered"
 						label="Idioma de salida"
 						onSelectionChange={handleSelectChange}
+						defaultSelectedKey={langValue}
 					>
 						{defaultLang.map((lang) => (
 							<AutocompleteItem key={lang.to} value={lang.to}>
