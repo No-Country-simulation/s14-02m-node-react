@@ -29,6 +29,8 @@ export default function Home() {
 					<UserForm />
 				</div>
 			</div>
+		</div>
+			
 		</>
 	);
 }
