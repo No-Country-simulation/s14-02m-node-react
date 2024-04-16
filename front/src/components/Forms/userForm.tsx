@@ -77,17 +77,16 @@ export default function UserForm() {
 			<div className="form-wrapper w-full mt-4">
 				<form className="flex flex-col gap-4" onSubmit={handleSubmit}>
 					<Textarea
-						label="Introduce el texto a traducir aquí..."
+						className="customTheme"
+						placeholder="Introduce tu texto"
 						color="primary"
 						radius="lg"
-						variant="faded"
+						variant="bordered"
 						onValueChange={setMessage}
 					/>
 					<Autocomplete
-						className=""
-						color="primary"
 						radius="lg"
-						variant="faded"
+						variant="bordered"
 						label="Idioma de salida"
 						onSelectionChange={handleSelectChange}
 						defaultSelectedKey={langValue}
@@ -101,16 +100,18 @@ export default function UserForm() {
 					{/* Renderiza condicionalmente los botones con el spinner en función de listenLoading*/}
 					{listenLoading ? (
 						<Button
+							className="customTheme w-40"
 							children="Traduciendo"
 							type="submit"
-							color="secondary"
+							color="primary"
 							isLoading={true}
 						/>
 					) : (
 						<Button
+							className="customTheme w-40"
 							children="Traducir"
 							type="submit"
-							color="secondary"
+							color="primary"
 							isLoading={false}
 						/>
 					)}

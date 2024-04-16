@@ -24,6 +24,23 @@ const config: Config = {
       }
     },
   },
-  plugins: [nextui()],
+  plugins: [
+		nextui({
+			themes: {
+				customTheme: {
+					colors: {
+						primary: {
+							foreground: "#FFFFFF",
+							DEFAULT: "#e55958",
+						},
+						secondary: {
+							foreground: "#FFFFFF",
+							DEFAULT: "#6246ea",
+						},
+					},
+				},
+			},
+		}),
+	],
 };
 export default config;
