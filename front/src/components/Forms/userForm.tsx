@@ -72,10 +72,15 @@ export default function UserForm() {
 		const selectedLang = langCode.toString() as ILanguageCodes
 		setLangValue(selectedLang);
 	};
+
+	const classNamesAutocomplete = {
+		"base": "flex justify-center items-center w-fit",
+	}
+
 	return (
 		<>
 			<div className="form-wrapper w-full mt-4">
-				<form className="flex flex-col gap-4" onSubmit={handleSubmit}>
+				<form className="flex flex-col gap-4 justify-center items-center" onSubmit={handleSubmit}>
 					<Textarea
 						className="customTheme"
 						placeholder="Introduce tu texto"
@@ -85,11 +90,14 @@ export default function UserForm() {
 						onValueChange={setMessage}
 					/>
 					<Autocomplete
-						radius="lg"
+						radius="full"
 						variant="bordered"
 						label="Idioma de salida"
+						labelPlacement="outside-left"
+						size="md"
 						onSelectionChange={handleSelectChange}
 						defaultSelectedKey={langValue}
+						classNames={classNamesAutocomplete}
 					>
 						{defaultLang.map((lang) => (
 							<AutocompleteItem key={lang.to} value={lang.to}>
