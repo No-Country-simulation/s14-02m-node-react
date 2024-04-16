@@ -42,6 +42,7 @@ export default function UserForm() {
 				});
 				// console.log(response)
 				const parseRes: IBackendResponse = await response.json();
+				console.log({parseRes});
 				const messageBubble: IGroupedMessage = {
 					id: msgId,
 					client: {

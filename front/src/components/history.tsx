@@ -6,7 +6,7 @@ import { Button } from "@nextui-org/react";
 export default function History() {
 	//1. Me traigo el historial del store
 	const { history, cleanHistory } = useHistoryStore();
-	console.log(history[0]);
+	// console.log(history[0]);
 	if (history.length > 0)
 		return (
 			<div className="w-full h-full max-h-[calc(100dvh-272px)] overflow-scroll">
