@@ -10,7 +10,7 @@ export default function Home() {
 		<>
 			<div className="h-[calc(100dvh-64px)] flex flex-col justify-between">
 				{history.length === 0 ? 
-					<div className="text-gris w-10/12 max-w-80 mx-auto my-auto text-center flex flex-col justify-center gap-10">
+					<div className="text-gris w-10/12 max-w-80 mx-auto my-auto text-center flex flex-col justify-center gap-10 h-full max-h-[calc(100dvh-272px)]">
 						<h1 className="text-lg md:text-2xl">
 							¡Bienvenido a <br />
 							Talk<span className="text-[#e55958]/90">IA</span>mos!
@@ -25,7 +25,7 @@ export default function Home() {
 					<History />
 				}
 
-				<div className="flex flex-col justify-center items-center w-11/12 h-screen mx-auto">
+				<div className="flex flex-col justify-center items-center w-11/12 h-fit mx-auto mb-4">
 					<UserForm />
 				</div>
 			</div>
