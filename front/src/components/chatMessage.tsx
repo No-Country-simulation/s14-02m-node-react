@@ -27,5 +27,6 @@ const ResponseMessageBox = ({ chat }: { chat: ISingleMessage }) => {
 	return <div key={chat.message} className={`flex flex-row justify-start items-center gap-3 w-full text-sm text-white`}>
 		<Image src={langIcon} width={30} height={30} alt={`Nombre: ${languageFinded.name}`} />
 		<p>{chat.message}</p>
+		<PlayButton message={chat.message} />
 	</div>
 }
