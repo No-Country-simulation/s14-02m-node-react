@@ -18,8 +18,6 @@ export default function UserForm() {
 	const [responseGPT, setResponseGPT] = useState<IBackendResponse | null>(null);
 	//listenLoading determina si se renderiza el boton con spiner o no.
 	const [listenLoading, setListenLoading] = useState(false);
-	//Me traigo el historial de zustand
-	const history = useHistoryStore((state) => state.history);
 	const updateHistory = useHistoryStore((state) => state.updateHistory);
 
 	const msgId = crypto.randomBytes(20).toString("hex");
