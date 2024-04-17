@@ -7,7 +7,10 @@ import { useHistoryStore } from "@/stores/historyStore";
 import { IBackendResponse } from "@/interfaces/backRes.interface";
 import { ChatRol, ILanguageCodes } from "@/interfaces/user.interface";
 import crypto from "crypto";
-import { IGroupedMessage, ISingleMessage } from "@/interfaces/message.interface";
+import {
+	IGroupedMessage,
+	ISingleMessage,
+} from "@/interfaces/message.interface";
 
 export default function UserForm() {
 	//Se actualiza desde onValueChange
@@ -42,7 +45,7 @@ export default function UserForm() {
 				});
 				// console.log(response)
 				const parseRes: IBackendResponse = await response.json();
-				console.log({parseRes});
+				console.log({ parseRes });
 				const messageBubble: IGroupedMessage = {
 					id: msgId,
 					client: {
@@ -54,11 +57,11 @@ export default function UserForm() {
 						langCode: tempUserMessage.langCode as ILanguageCodes,
 						message: parseRes.translated,
 						rol: ChatRol.IA,
-					}
-				}
-				//Actualiza el store con la solicitud del usuario
+					},
+					audioUrl: null,
+				};
+				//Actualiza el store con la solicitud del usuario y la respuesta de la API
 				updateHistory(messageBubble);
-				//Actualiza el store con la respuesta de la API.
 				setListenLoading(false);
 			} else {
 				alert("Por favor complete todos los campos...");
@@ -69,18 +72,21 @@ export default function UserForm() {
 	};
 	// console.log("Log de history en userForm", history);
 	const handleSelectChange = (langCode: Key) => {
-		const selectedLang = langCode.toString() as ILanguageCodes
+		const selectedLang = langCode as ILanguageCodes;
 		setLangValue(selectedLang);
 	};
 
 	const classNamesAutocomplete = {
-		"base": "flex justify-center items-center w-fit",
-	}
+		base: "flex justify-center items-center w-fit",
+	};
 
 	return (
 		<>
 			<div className="form-wrapper w-full mt-4">
-				<form className="flex flex-col gap-4 justify-center items-center" onSubmit={handleSubmit}>
+				<form
+					className="flex flex-col gap-4 justify-center items-center"
+					onSubmit={handleSubmit}
+				>
 					<Textarea
 						className="customTheme"
 						placeholder="Introduce tu texto"
