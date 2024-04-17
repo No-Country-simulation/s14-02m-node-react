@@ -11,7 +11,7 @@ export default function ChatMessage({ chat }: { chat: IGroupedMessage }) {
 		<div className="flex flex-col md:flex-row rounded-xl gap-6 bg-secundario px-3 py-2">
 			<div>
 				<ClientMessageBox chat={chat.client} />
-				<ResponseMessageBox chat={chat} />
+				<ResponseMessageBox chat={chat.response} />
 			</div>
 			<div>
 				<PlayButton chat={chat} />
@@ -39,12 +39,12 @@ const ClientMessageBox = ({ chat }: { chat: ISingleMessage }) => {
 	);
 };
 
-const ResponseMessageBox = ({ chat }: { chat: IGroupedMessage }) => {
-	const languageFinded = filterLanguage(chat.response.langCode);
+const ResponseMessageBox = ({ chat }: { chat: ISingleMessage }) => {
+	const languageFinded = filterLanguage(chat.langCode);
 	const langIcon = `https://unpkg.com/language-icons@0.3.0/icons/${languageFinded.to}.svg`;
 	return (
 		<div
-			key={chat.response.message}
+			key={chat.message}
 			className={`flex flex-row justify-start items-center gap-3 w-full text-sm text-white`}
 		>
 			<Image
@@ -53,7 +53,7 @@ const ResponseMessageBox = ({ chat }: { chat: IGroupedMessage }) => {
 				height={30}
 				alt={`Nombre: ${languageFinded.name}`}
 			/>
-			<p>{chat.response.message}</p>
+			<p>{chat.message}</p>
 		</div>
 	);
 };
