@@ -10,8 +10,8 @@ export default function ChatMessage({ chat }: { chat: IGroupedMessage }) {
 	return (
 		<div className="flex flex-col md:flex-row rounded-xl gap-6 bg-secundario px-3 py-2">
 			<div>
-				<ClientMessageBox chat={chat.client} />
-				<ResponseMessageBox chat={chat.response} />
+				<ClientMessageBox message={chat.client} />
+				<ResponseMessageBox message={chat.response} />
 			</div>
 			<div>
 				<PlayButton chat={chat} />
@@ -20,12 +20,12 @@ export default function ChatMessage({ chat }: { chat: IGroupedMessage }) {
 	);
 }
 
-const ClientMessageBox = ({ chat }: { chat: ISingleMessage }) => {
-	const languageFinded = filterLanguage(chat.langCode);
+const ClientMessageBox = ({ message }: { message: ISingleMessage }) => {
+	const languageFinded = filterLanguage(message.langCode);
 	const langIcon = `https://unpkg.com/language-icons@0.3.0/icons/${languageFinded.to}.svg`;
 	return (
 		<div
-			key={chat.message}
+			key={message.message}
 			className={`flex flex-row md:flex-row-reverse justify-start items-center gap-3 w-full text-white font-bold`}
 		>
 			<Image
@@ -34,17 +34,17 @@ const ClientMessageBox = ({ chat }: { chat: ISingleMessage }) => {
 				height={30}
 				alt={`Nombre: ${languageFinded.name}`}
 			/>
-			<p>{chat.message}</p>
+			<p>{message.message}</p>
 		</div>
 	);
 };
 
-const ResponseMessageBox = ({ chat }: { chat: ISingleMessage }) => {
-	const languageFinded = filterLanguage(chat.langCode);
+const ResponseMessageBox = ({ message }: { message: ISingleMessage }) => {
+	const languageFinded = filterLanguage(message.langCode);
 	const langIcon = `https://unpkg.com/language-icons@0.3.0/icons/${languageFinded.to}.svg`;
 	return (
 		<div
-			key={chat.message}
+			key={message.message}
 			className={`flex flex-row justify-start items-center gap-3 w-full text-sm text-white`}
 		>
 			<Image
@@ -53,7 +53,7 @@ const ResponseMessageBox = ({ chat }: { chat: ISingleMessage }) => {
 				height={30}
 				alt={`Nombre: ${languageFinded.name}`}
 			/>
-			<p>{chat.message}</p>
+			<p>{message.message}</p>
 		</div>
 	);
 };
