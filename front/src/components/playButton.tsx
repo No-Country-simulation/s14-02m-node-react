@@ -1,12 +1,10 @@
 "use client";
 import { AudioResponse } from "@/interfaces/backRes.interface";
 import { Button } from "@nextui-org/react";
-import { useState } from "react";
 import { IGroupedMessage } from "@/interfaces/message.interface";
 import { useHistoryStore } from "@/stores/historyStore";
 
 export default function PlayButton({ chat }: { chat: IGroupedMessage }) {
-	const [audioURL, setAudioURL] = useState<null | string>(null);
 	const { history, updateAudio } = useHistoryStore();
 
 	const handlePlay = async () => {
@@ -32,11 +30,7 @@ export default function PlayButton({ chat }: { chat: IGroupedMessage }) {
 	return (
 		<>
 			<Button className="w-1/2" isIconOnly={true} onClick={handlePlay}>
-				{chat.audioUrl ? (
-					<audio className="w-full" controls src={chat.audioUrl}></audio>
-				) : (
-					"🔊"
-				)}
+				{chat.audioUrl ? <audio controls src={chat.audioUrl}></audio> : "🔊"}
 			</Button>
 		</>
 	);

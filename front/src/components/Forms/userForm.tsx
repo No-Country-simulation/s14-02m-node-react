@@ -112,21 +112,29 @@ export default function UserForm() {
 						))}
 					</Autocomplete>
 					{/* Renderiza condicionalmente los botones con el spinner en función de listenLoading*/}
-					{listenLoading ? (
+
+					{!langValue || !message ? (
 						<Button
-							className="customTheme w-40"
-							children="Traduciendo"
+							className="bg-red-400"
+							children="Faltan completar los campos"
 							type="submit"
 							color="primary"
-							isLoading={true}
 						/>
-					) : (
+					) : !listenLoading ? (
 						<Button
 							className="customTheme w-40"
 							children="Traducir"
 							type="submit"
 							color="primary"
 							isLoading={false}
+						/>
+					) : (
+						<Button
+							className="customTheme w-40"
+							children="Traduciendo"
+							type="submit"
+							color="primary"
+							isLoading={true}
 						/>
 					)}
 				</form>
