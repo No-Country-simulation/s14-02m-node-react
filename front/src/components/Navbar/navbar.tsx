@@ -16,7 +16,7 @@ import { useState } from "react";
 export default function Nav() {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-	const menuItems = ["Historial", "Ayuda", "Sobre nosotros"];
+	const menuItems = ["Ayuda", "Sobre nosotros"];
 
 	return (
 		<Navbar onMenuOpenChange={setIsMenuOpen}>
@@ -39,11 +39,6 @@ export default function Nav() {
 			</NavbarContent>
 
 			<NavbarContent className="hidden sm:flex gap-4" justify="center">
-				<NavbarItem>
-					<Link color="foreground" href="#">
-						Historial
-					</Link>
-				</NavbarItem>
 				<NavbarItem isActive>
 					<Link href="#" aria-current="page">
 						Ayuda
@@ -56,9 +51,6 @@ export default function Nav() {
 				</NavbarItem>
 			</NavbarContent>
 			<NavbarContent justify="end">
-				<NavbarItem className="hidden lg:flex">
-					<Link href="#">Login</Link>
-				</NavbarItem>
 				{/* <NavbarItem>
 					<Button as={Link} color="primary" href="#" variant="flat">
 						Sign Up
