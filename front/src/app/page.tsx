@@ -28,9 +28,7 @@ export default function Home() {
 				<div className="flex flex-col justify-center items-center w-11/12 h-fit mx-auto mb-4">
 					<UserForm />
 				</div>
-			</div>
-		</div>
-			
+		</div>	
 		</>
 	);
 }
