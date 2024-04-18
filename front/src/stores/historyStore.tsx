@@ -4,12 +4,6 @@ import { IGroupedMessage } from "@/interfaces/message.interface";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
-// interface Bubble {
-//  id: string
-// 	user: IHistory
-// 	ia: IHistory,
-// }
-
 interface HistoryZustand {
 	history: IGroupedMessage[];
 	updateHistory: (response: IGroupedMessage) => void;

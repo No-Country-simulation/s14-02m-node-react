@@ -17,8 +17,6 @@ export default function History() {
 					))}
 				</div>
 				<Button className="flex" onClick={() => cleanHistory()}>Borrar conversaciones</Button>
-			</div>
-			<Button onClick={() => cleanHistory()}>Borrar conversaciones</Button>
 		</div>
 	);
 }
