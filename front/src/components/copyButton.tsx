@@ -1,7 +1,9 @@
-import { Button } from "@nextui-org/react";
+import { Button, Popover, PopoverContent, PopoverTrigger } from "@nextui-org/react";
 import SVGIcon from "./svgicon";
+import { useEffect, useState } from "react";
 
 export default function CopyButton({ copyText }: { copyText: string }) {
+	const [isOpen, setIsOpen] = useState(false);
 	const copyTextToClipboard = async (text: string) => {
 		if (navigator.clipboard) {
 			return await navigator.clipboard.writeText(text);
@@ -14,15 +16,29 @@ export default function CopyButton({ copyText }: { copyText: string }) {
 		await copyTextToClipboard(copyText);
 	};
 
+	// cerrar el popover despues de 1s
+	useEffect(() => {
+		if(isOpen){
+			setTimeout(() => setIsOpen(false), 1000)
+		}
+	}, [isOpen])
+
 	return (
 		<>
-			<Button
-				onClick={handleCopyClick}
-				isIconOnly
-				className="bg-primario text-white fill-slate-400"
-			>
-				<SVGIcon icon="copy" />
-			</Button>
+			<Popover placement="top" color="foreground" isOpen={isOpen} onOpenChange={(open) => setIsOpen(open)}>
+				<PopoverTrigger>
+					<Button
+						onClick={handleCopyClick}
+						isIconOnly
+						className="bg-primario text-white fill-slate-400"
+					>
+						<SVGIcon icon="copy" />
+					</Button>
+				</PopoverTrigger>
+				<PopoverContent>
+					¡Texto copiado!
+				</PopoverContent>
+			</Popover>
 		</>
 	);
 }
