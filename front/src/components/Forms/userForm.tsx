@@ -1,7 +1,7 @@
 "use client";
 import { Button, Textarea } from "@nextui-org/react";
 import { Autocomplete, AutocompleteItem } from "@nextui-org/react";
-import { Key, useState } from "react";
+import { ChangeEvent, Key, useEffect, useState } from "react";
 import { defaultLang } from "@/configs/defaultLang";
 import { useHistoryStore } from "@/stores/historyStore";
 import { IBackendResponse } from "@/interfaces/backRes.interface";
@@ -21,6 +21,11 @@ export default function UserForm() {
 	const [listenLoading, setListenLoading] = useState(false);
 	//Me traigo el historial de zustand
 	const { updateHistory } = useHistoryStore();
+	//Seteo del limite de caracteres en input
+	const [limitMsg, setLimitMsg] = useState({
+		limit: 100,
+		actual: 0,
+	})
 
 	const msgId = crypto.randomBytes(8).toString("hex");
 
@@ -62,6 +67,7 @@ export default function UserForm() {
 				};
 				//Actualiza el store con la solicitud del usuario y la respuesta de la API
 				updateHistory(messageBubble);
+				setMessage("")
 				setListenLoading(false);
 			} else {
 				alert("Por favor complete todos los campos...");
@@ -75,6 +81,14 @@ export default function UserForm() {
 		const selectedLang = langCode as ILanguageCodes;
 		setLangValue(selectedLang);
 	};
+
+	const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+		let target = e.target.value
+		if(target.length <= limitMsg.limit){
+			setLimitMsg({...limitMsg, actual: target.length})
+			setMessage(target)
+		}
+	}
 
 	return (
 		<>
@@ -105,15 +119,20 @@ export default function UserForm() {
 						color="primary"
 						radius="lg"
 						variant="bordered"
-						onValueChange={setMessage}
+						value={message}
+						maxLength={limitMsg.limit}
+						onChange={handleInputChange}
 					/>
+					<p className={`w-full text-xs text-right pr-3 -mt-10 mb-2 ${limitMsg.actual === limitMsg.limit && 'font-semibold text-primario'}`}>
+						{limitMsg.actual}/{limitMsg.limit}
+					</p>
 					{/* Renderiza condicionalmente los botones con el spinner en función de listenLoading*/}
 
 					{!langValue || !message ? (
 						<Button
-							className="min-w-full mx-2 bg-primario/85"
+							className="min-w-full mx-2 bg-primario/85 hover:cursor-not-allowed"
 							disabled = {true}
-							children="Faltan completar los campos"
+							children="Traducir"
 							type="submit"
 							color="primary"
 						/>
