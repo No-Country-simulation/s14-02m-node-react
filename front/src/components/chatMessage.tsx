@@ -5,16 +5,18 @@ import {
 import { filterLanguage } from "@/utils/filterLanguage";
 import Image from "next/image";
 import PlayButton from "./playButton";
+import CopyButton from "./copyButton";
 
 export default function ChatMessage({ chat }: { chat: IGroupedMessage }) {
 	return (
-		<div className="flex flex-col md:flex-row rounded-xl gap-6 bg-secundario px-3 py-2">
-			<div>
-				<ClientMessageBox message={chat.client} />
-				<ResponseMessageBox message={chat.response} />
+		<div className="flex flex-col md:flex-row-reverse md:justify-between rounded-xl gap-2 bg-secundario px-3 py-2 shadow-sm shadow-primario">
+			<div className="space-x-2">
+				<PlayButton chat={chat} />
+				<CopyButton copyText={chat.response.message} />
 			</div>
 			<div>
-				<PlayButton chat={chat} />
+				<ResponseMessageBox message={chat.response} />
+				<ClientMessageBox message={chat.client} />
 			</div>
 		</div>
 	);
@@ -26,12 +28,13 @@ const ClientMessageBox = ({ message }: { message: ISingleMessage }) => {
 	return (
 		<div
 			key={message.message}
-			className={`flex flex-row md:flex-row-reverse justify-start items-center gap-3 w-full text-white font-bold`}
+			className={`flex flex-row justify-start items-center gap-3 text-sm w-full italic text-white`}
 		>
 			<Image
 				src={langIcon}
 				width={30}
 				height={30}
+				className="rounded-full"
 				alt={`Nombre: ${languageFinded.name}`}
 			/>
 			<p>{message.message}</p>
@@ -45,12 +48,13 @@ const ResponseMessageBox = ({ message }: { message: ISingleMessage }) => {
 	return (
 		<div
 			key={message.message}
-			className={`flex flex-row justify-start items-center gap-3 w-full text-sm text-white`}
+			className={`flex flex-row justify-start items-center gap-3 w-full text-white font-bold`}
 		>
 			<Image
 				src={langIcon}
 				width={30}
 				height={30}
+				className="rounded-full"
 				alt={`Nombre: ${languageFinded.name}`}
 			/>
 			<p>{message.message}</p>
