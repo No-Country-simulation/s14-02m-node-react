@@ -1,3 +1,4 @@
+import { AudioResponse } from "./backRes.interface";
 import { ILanguageCodes, IChatRol } from "./user.interface";
 
 export interface ISingleMessage {
@@ -9,5 +10,6 @@ export interface ISingleMessage {
 export interface IGroupedMessage {
     id: string,
     client: ISingleMessage,
-    response: ISingleMessage
+    response: ISingleMessage,
+    audioUrl: null | string
 }

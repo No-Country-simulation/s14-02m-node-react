@@ -1,10 +1,11 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, Injectable, HttpStatus } from '@nestjs/common';
 import { OpenAI } from 'openai';
 import { Payload } from './interfaces/payload.interface';
 import * as fs from 'fs';
 import { resolve } from 'path';
 import * as crypto from 'crypto';
-import { defaultLang } from './languages';
+import { getLangByISO } from './utils/getLangByISO';
+import { QUERY_TO_TRANSLATE } from './utils/gpt.queries';
 
 @Injectable()
 export class GptService {
@@ -22,31 +23,35 @@ export class GptService {
   }
 
   async translate({ message, to }: Payload) {
-    // función para buscar lenguajes según código ISO-639-1
-    const filterLanguage = (langCode: string) => {
-      const findedLang = defaultLang.find((langObj) => langObj.to === langCode);
-      if (!findedLang) return { name: undefined, to: undefined };
-      return findedLang;
-    };
-    
-    // busca en el array de lenguajes el código que corresponda y devuelve el objeto con propiedades "to" & "name"
-    const lang = filterLanguage(to);
+    const langToTranslate = getLangByISO(to);
+
     const response = await this.openai.chat.completions.create({
       model: this.model,
       messages: [
         {
           role: 'system',
-          content: `Translate the user's phrase to "${lang.name}" language, you must respond in JSON format with properties "from" which would be the iso-639-1 format of the original language written by the user, with a second property "translated" which would be the translated language.`,
+          content: QUERY_TO_TRANSLATE,
         },
         {
           role: 'user',
-          content: message,
+          content: `
+          {
+            to: ${langToTranslate.name},
+            text: ${message},
+          }`,
         },
       ],
       response_format: { type: 'json_object' },
     });
 
-    return response.choices[0].message.content;
+    const result = response.choices[0].message.content;
+
+    if (result.includes('error')) {
+      const errorMessage = JSON.parse(result);
+      throw new HttpException(errorMessage.error, HttpStatus.BAD_REQUEST);
+    }
+
+    return result;
   }
 
   async convertToAudio(

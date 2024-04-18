@@ -12,11 +12,13 @@ import {
 } from "@nextui-org/react";
 import Image from "next/image";
 import { useState } from "react";
+import Footer from "../Footer/footer";
+import icons from "@/components/Footer/ArrayIcons";
 
 export default function Nav() {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-	const menuItems = ["Historial", "Ayuda", "Sobre nosotros"];
+	const menuItems = ["Ayuda", "Sobre nosotros"];
 
 	return (
 		<Navbar onMenuOpenChange={setIsMenuOpen}>
@@ -29,21 +31,16 @@ export default function Nav() {
 					<Image
 						src="/Navbar/app-logo.png"
 						alt="Brand icon"
-						width={52.5}
-						height={48}
+						width={30}
+						height={30}
 					/>
 					<p className="font-bold text-inherit">
-						Talk<span className="uppercase text-secundario ">ia</span>mos
+						Talk<span className="uppercase text-primario ">ia</span>mos
 					</p>
 				</NavbarBrand>
 			</NavbarContent>
 
 			<NavbarContent className="hidden sm:flex gap-4" justify="center">
-				<NavbarItem>
-					<Link color="foreground" href="#">
-						Historial
-					</Link>
-				</NavbarItem>
 				<NavbarItem isActive>
 					<Link href="#" aria-current="page">
 						Ayuda
@@ -56,15 +53,13 @@ export default function Nav() {
 				</NavbarItem>
 			</NavbarContent>
 			<NavbarContent justify="end">
-				<NavbarItem className="hidden lg:flex">
-					<Link href="#">Login</Link>
-				</NavbarItem>
 				{/* <NavbarItem>
 					<Button as={Link} color="primary" href="#" variant="flat">
 						Sign Up
 					</Button>
 				</NavbarItem> */}
 			</NavbarContent>
+			{/* Acá comienza el menu lateral */}
 			<NavbarMenu>
 				{menuItems.map((item, index) => (
 					<NavbarMenuItem key={`${item}-${index}`}>
@@ -110,6 +105,11 @@ export default function Nav() {
 						</Link>
 					</NavbarMenuItem>
 				))}
+				<div className="relative h-full">
+					<div className="absolute bottom-0">
+						<Footer appName="TalkIAmos" iconItems={icons} />
+					</div>
+				</div>
 			</NavbarMenu>
 		</Navbar>
 	);

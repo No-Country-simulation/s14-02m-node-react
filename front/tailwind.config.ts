@@ -15,32 +15,32 @@ const config: Config = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       colors: {
-        "primario": "#fcdc73",
-        "secundario": "#6246ea",
+        "primario": "#e55958",
+        "secundario": "#3DA9FC",
         "acento": "#e45858",
         "blanco": "#FFFFFE",
         "negro": "#2b2c34",
-        "gris": "#9CA3AF"
+        "gris": "#5F6C7B",
       }
     },
   },
   plugins: [
-		nextui({
-			themes: {
-				customTheme: {
-					colors: {
-						primary: {
-							foreground: "#FFFFFF",
-							DEFAULT: "#e55958",
-						},
-						secondary: {
-							foreground: "#FFFFFF",
-							DEFAULT: "#6246ea",
-						},
-					},
-				},
-			},
-		}),
-	],
+    nextui({
+      themes: {
+        customTheme: {
+          colors: {
+            primary: {
+              foreground: "#FFFFFF",
+              DEFAULT: "#e55958",
+            },
+            secondary: {
+              foreground: "#FFFFFF",
+              DEFAULT: "#6246ea",
+            },
+          },
+        },
+      },
+    }),
+  ],
 };
 export default config;

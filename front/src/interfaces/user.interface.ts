@@ -1,6 +1,6 @@
 export enum ChatRol {
-    USER = 0,
-    IA = 1
+	USER = 0,
+	IA = 1
 }
 export type IChatRol = ChatRol.USER | ChatRol.IA;
 export type ILanguageCodes =
