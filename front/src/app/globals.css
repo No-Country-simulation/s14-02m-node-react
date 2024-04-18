@@ -1,3 +1,29 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@media (max-width:600px) {
+    .autocomplete > div > div {
+        max-width: 50%;
+    }
+    
+    .autocomplete > div {
+        justify-content: space-between;
+    } 
+}
+
+@media (min-width:601px) {   
+    .autocomplete > div {
+        justify-content: center;
+        gap: 10px;
+    } 
+}
+
+.autocomplete > div > div {
+    background-color: white;
+    color: #e55958;
+}
+
+.autocomplete > div > div > div > div > input {
+    font-weight: bold;
+}

@@ -1,13 +1,16 @@
 "use client";
 import { Button, Textarea } from "@nextui-org/react";
 import { Autocomplete, AutocompleteItem } from "@nextui-org/react";
-import { Key, useState } from "react";
+import { ChangeEvent, Key, useEffect, useState } from "react";
 import { defaultLang } from "@/configs/defaultLang";
 import { useHistoryStore } from "@/stores/historyStore";
 import { IBackendResponse } from "@/interfaces/backRes.interface";
 import { ChatRol, ILanguageCodes } from "@/interfaces/user.interface";
 import crypto from "crypto";
-import { IGroupedMessage, ISingleMessage } from "@/interfaces/message.interface";
+import {
+	IGroupedMessage,
+	ISingleMessage,
+} from "@/interfaces/message.interface";
 
 export default function UserForm() {
 	//Se actualiza desde onValueChange
@@ -18,6 +21,11 @@ export default function UserForm() {
 	const [listenLoading, setListenLoading] = useState(false);
 	//Me traigo el historial de zustand
 	const { updateHistory } = useHistoryStore();
+	//Seteo del limite de caracteres en input
+	const [limitMsg, setLimitMsg] = useState({
+		limit: 100,
+		actual: 0,
+	})
 
 	const msgId = crypto.randomBytes(8).toString("hex");
 
@@ -42,7 +50,7 @@ export default function UserForm() {
 				});
 				// console.log(response)
 				const parseRes: IBackendResponse = await response.json();
-				console.log({parseRes});
+				console.log({ parseRes });
 				const messageBubble: IGroupedMessage = {
 					id: msgId,
 					client: {
@@ -54,11 +62,12 @@ export default function UserForm() {
 						langCode: tempUserMessage.langCode as ILanguageCodes,
 						message: parseRes.translated,
 						rol: ChatRol.IA,
-					}
-				}
-				//Actualiza el store con la solicitud del usuario
+					},
+					audioUrl: null,
+				};
+				//Actualiza el store con la solicitud del usuario y la respuesta de la API
 				updateHistory(messageBubble);
-				//Actualiza el store con la respuesta de la API.
+				setMessage("")
 				setListenLoading(false);
 			} else {
 				alert("Por favor complete todos los campos...");
@@ -69,35 +78,34 @@ export default function UserForm() {
 	};
 	// console.log("Log de history en userForm", history);
 	const handleSelectChange = (langCode: Key) => {
-		const selectedLang = langCode.toString() as ILanguageCodes
+		const selectedLang = langCode as ILanguageCodes;
 		setLangValue(selectedLang);
 	};
 
-	const classNamesAutocomplete = {
-		"base": "flex justify-center items-center w-fit",
+	const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+		let target = e.target.value
+		if(target.length <= limitMsg.limit){
+			setLimitMsg({...limitMsg, actual: target.length})
+			setMessage(target)
+		}
 	}
 
 	return (
 		<>
-			<div className="form-wrapper w-full mt-4">
-				<form className="flex flex-col gap-4 justify-center items-center" onSubmit={handleSubmit}>
-					<Textarea
-						className="customTheme"
-						placeholder="Introduce tu texto"
-						color="primary"
-						radius="lg"
-						variant="bordered"
-						onValueChange={setMessage}
-					/>
+				<form
+					className="flex flex-col gap-4 justify-center items-center md:w-4/5 lg:w-3/5 mx-auto w-full"
+					onSubmit={handleSubmit}
+				>
 					<Autocomplete
 						radius="full"
 						variant="bordered"
-						label="Idioma de salida"
+						placeholder="Idioma"
+						label="Seleccione Idioma"
 						labelPlacement="outside-left"
 						size="md"
 						onSelectionChange={handleSelectChange}
 						defaultSelectedKey={langValue}
-						classNames={classNamesAutocomplete}
+						className="autocomplete flex justify-center items-center max-w-[95%] mx-auto"
 					>
 						{defaultLang.map((lang) => (
 							<AutocompleteItem key={lang.to} value={lang.to}>
@@ -105,26 +113,47 @@ export default function UserForm() {
 							</AutocompleteItem>
 						))}
 					</Autocomplete>
+					<Textarea
+						className="customTheme bg-white"
+						placeholder="Introduce tu texto"
+						color="primary"
+						radius="lg"
+						variant="bordered"
+						value={message}
+						maxLength={limitMsg.limit}
+						onChange={handleInputChange}
+					/>
+					<p className={`w-full text-xs text-right pr-3 -mt-10 mb-2 ${limitMsg.actual === limitMsg.limit && 'font-semibold text-primario'}`}>
+						{limitMsg.actual}/{limitMsg.limit}
+					</p>
 					{/* Renderiza condicionalmente los botones con el spinner en función de listenLoading*/}
-					{listenLoading ? (
+
+					{!langValue || !message ? (
 						<Button
-							className="customTheme w-40"
-							children="Traduciendo"
+							className="min-w-full mx-2 bg-primario/85 hover:cursor-not-allowed"
+							disabled = {true}
+							children="Traducir"
 							type="submit"
 							color="primary"
-							isLoading={true}
 						/>
-					) : (
+					) : !listenLoading ? (
 						<Button
-							className="customTheme w-40"
+							className="min-w-full mx-2 bg-primario"
 							children="Traducir"
 							type="submit"
 							color="primary"
 							isLoading={false}
 						/>
+					) : (
+						<Button
+							className="min-w-full mx-2 bg-primario/70"
+							children="Traduciendo"
+							type="submit"
+							color="primary"
+							isLoading={true}
+						/>
 					)}
 				</form>
-			</div>
 		</>
 	);
 }

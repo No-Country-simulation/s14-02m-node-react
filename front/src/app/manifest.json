@@ -1,32 +1,32 @@
 {
-    "theme_color": "#7e35f6",
-    "background_color": "#888480",
-    "display": "standalone",
-    "scope": "/",
-    "start_url": "/",
-    "name": "TraductorApp",
-    "short_name": "TraductorApp",
-    "description": "Application that allows translating in everyday life",
-    "icons": [
-        {
-            "src": "/icon-192x192.png",
-            "sizes": "192x192",
-            "type": "image/png"
-        },
-        {
-            "src": "/icon-256x256.png",
-            "sizes": "256x256",
-            "type": "image/png"
-        },
-        {
-            "src": "/icon-384x384.png",
-            "sizes": "384x384",
-            "type": "image/png"
-        },
-        {
-            "src": "/icon-512x512.png",
-            "sizes": "512x512",
-            "type": "image/png"
-        }
-    ]
+	"theme_color": "#7e35f6",
+	"background_color": "#888480",
+	"display": "standalone",
+	"scope": "/",
+	"start_url": "/",
+	"name": "TalkIAmos",
+	"short_name": "TalkIAmos",
+	"description": "Application that allows translating in everyday life",
+	"icons": [
+		{
+			"src": "/icon-192x192.png",
+			"sizes": "192x192",
+			"type": "image/png"
+		},
+		{
+			"src": "/icon-256x256.png",
+			"sizes": "256x256",
+			"type": "image/png"
+		},
+		{
+			"src": "/icon-384x384.png",
+			"sizes": "384x384",
+			"type": "image/png"
+		},
+		{
+			"src": "/icon-512x512.png",
+			"sizes": "512x512",
+			"type": "image/png"
+		}
+	]
 }
