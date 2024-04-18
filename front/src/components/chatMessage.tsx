@@ -5,6 +5,7 @@ import {
 import { filterLanguage } from "@/utils/filterLanguage";
 import Image from "next/image";
 import PlayButton from "./playButton";
+import CopyButton from "./copyButton";
 
 export default function ChatMessage({ chat }: { chat: IGroupedMessage }) {
 	return (
@@ -15,6 +16,7 @@ export default function ChatMessage({ chat }: { chat: IGroupedMessage }) {
 			</div>
 			<div>
 				<PlayButton chat={chat} />
+				<CopyButton copyText={chat.response.message} />
 			</div>
 		</div>
 	);
