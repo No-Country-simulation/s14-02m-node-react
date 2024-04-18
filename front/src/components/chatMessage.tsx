@@ -9,12 +9,12 @@ import CopyButton from "./copyButton";
 
 export default function ChatMessage({ chat }: { chat: IGroupedMessage }) {
 	return (
-		<div className="flex flex-col md:flex-row-reverse md:justify-between md:items-center rounded-xl gap-2 bg-secundario px-3 py-2 shadow-sm shadow-primario">
+		<div className="flex flex-col md:flex-row-reverse md:justify-between md:items-center rounded-xl gap-4 bg-white px-3 py-2 shadow-md">
 			<div className="space-x-2">
 				<PlayButton chat={chat} />
 				<CopyButton copyText={chat.response.message} />
 			</div>
-			<div>
+			<div className="flex flex-col gap-4">
 				<ResponseMessageBox message={chat.response} />
 				<ClientMessageBox message={chat.client} />
 			</div>
@@ -28,16 +28,20 @@ const ClientMessageBox = ({ message }: { message: ISingleMessage }) => {
 	return (
 		<div
 			key={message.message}
-			className={`flex flex-row justify-start items-center gap-3 text-sm w-full italic text-white`}
+			className={`flex flex-col items-start gap-3 text-sm w-full italic text-white`}
 		>
-			<Image
-				src={langIcon}
-				width={30}
-				height={30}
-				className="rounded-full"
-				alt={`Nombre: ${languageFinded.name}`}
-			/>
-			<p>{message.message}</p>
+			<div className="flex flex-row justify-center items-center gap-2">
+				<Image
+					src={langIcon}
+					width={30}
+					height={30}
+					className="rounded-full"
+					alt={`Nombre: ${languageFinded.name}`}
+				/>
+				<p className="text-gris text-xs font-normal">{languageFinded.name}</p>
+			</div>
+
+			<p className="text-black">{message.message}</p>
 		</div>
 	);
 };
@@ -48,15 +52,18 @@ const ResponseMessageBox = ({ message }: { message: ISingleMessage }) => {
 	return (
 		<div
 			key={message.message}
-			className={`flex flex-row justify-start items-center gap-3 w-full text-white font-bold`}
+			className={`flex flex-col items-start gap-3 w-full text-secundario font-semibold`}
 		>
-			<Image
-				src={langIcon}
-				width={30}
-				height={30}
-				className="rounded-full"
-				alt={`Nombre: ${languageFinded.name}`}
-			/>
+			<div className="flex flex-row justify-center items-center gap-2">
+				<Image
+					src={langIcon}
+					width={30}
+					height={30}
+					className="rounded-full"
+					alt={`Nombre: ${languageFinded.name}`}
+				/>
+				<p className="text-gris text-xs font-normal">{languageFinded.name}</p>
+			</div>
 			<p>{message.message}</p>
 		</div>
 	);
