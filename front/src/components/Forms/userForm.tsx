@@ -76,26 +76,22 @@ export default function UserForm() {
 		setLangValue(selectedLang);
 	};
 
-	const classNamesAutocomplete = {
-		base: "flex justify-center items-center w-fit",
-	};
-
 	return (
 		<>
-			<div className="form-wrapper w-full">
 				<form
-					className="flex flex-col gap-4 justify-center items-center"
+					className="flex flex-col gap-4 justify-center items-center md:w-4/5 lg:w-3/5 mx-auto w-full"
 					onSubmit={handleSubmit}
 				>
 					<Autocomplete
 						radius="full"
 						variant="bordered"
-						label="Idioma de salida"
+						placeholder="Idioma"
+						label="Seleccione Idioma"
 						labelPlacement="outside-left"
 						size="md"
 						onSelectionChange={handleSelectChange}
 						defaultSelectedKey={langValue}
-						classNames={classNamesAutocomplete}
+						className="autocomplete flex justify-center items-center max-w-[95%] mx-auto"
 					>
 						{defaultLang.map((lang) => (
 							<AutocompleteItem key={lang.to} value={lang.to}>
@@ -104,7 +100,7 @@ export default function UserForm() {
 						))}
 					</Autocomplete>
 					<Textarea
-						className="customTheme"
+						className="customTheme bg-white"
 						placeholder="Introduce tu texto"
 						color="primary"
 						radius="lg"
@@ -115,14 +111,15 @@ export default function UserForm() {
 
 					{!langValue || !message ? (
 						<Button
-							className="bg-red-400"
+							className="min-w-full mx-2 bg-primario/85"
+							disabled = {true}
 							children="Faltan completar los campos"
 							type="submit"
 							color="primary"
 						/>
 					) : !listenLoading ? (
 						<Button
-							className="customTheme w-40"
+							className="min-w-full mx-2 bg-primario"
 							children="Traducir"
 							type="submit"
 							color="primary"
@@ -130,7 +127,7 @@ export default function UserForm() {
 						/>
 					) : (
 						<Button
-							className="customTheme w-40"
+							className="min-w-full mx-2 bg-primario/70"
 							children="Traduciendo"
 							type="submit"
 							color="primary"
@@ -138,7 +135,6 @@ export default function UserForm() {
 						/>
 					)}
 				</form>
-			</div>
 		</>
 	);
 }
