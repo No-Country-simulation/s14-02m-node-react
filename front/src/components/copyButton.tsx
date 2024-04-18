@@ -1,4 +1,9 @@
-import { Button, Popover, PopoverContent, PopoverTrigger } from "@nextui-org/react";
+import {
+	Button,
+	Popover,
+	PopoverContent,
+	PopoverTrigger,
+} from "@nextui-org/react";
 import SVGIcon from "./svgicon";
 import { useEffect, useState } from "react";
 
@@ -10,7 +15,7 @@ export default function CopyButton({ copyText }: { copyText: string }) {
 		} else {
 			return document.execCommand("copy", true, text); // creo que está muy deprecado este metodo, pero bien por usarlo en caso que no exista clipboard
 		}
-	}
+	};
 
 	const handleCopyClick = async () => {
 		await copyTextToClipboard(copyText);
@@ -18,26 +23,29 @@ export default function CopyButton({ copyText }: { copyText: string }) {
 
 	// cerrar el popover despues de 1s
 	useEffect(() => {
-		if(isOpen){
-			setTimeout(() => setIsOpen(false), 1000)
+		if (isOpen) {
+			setTimeout(() => setIsOpen(false), 1000);
 		}
-	}, [isOpen])
+	}, [isOpen]);
 
 	return (
 		<>
-			<Popover placement="top" color="foreground" isOpen={isOpen} onOpenChange={(open) => setIsOpen(open)}>
+			<Popover
+				placement="top"
+				color="foreground"
+				isOpen={isOpen}
+				onOpenChange={(open) => setIsOpen(open)}
+			>
 				<PopoverTrigger>
 					<Button
 						onClick={handleCopyClick}
 						isIconOnly
-						className="bg-primario text-white fill-slate-400"
+						className="bg-secundario fill-slate-400"
 					>
 						<SVGIcon icon="copy" />
 					</Button>
 				</PopoverTrigger>
-				<PopoverContent>
-					¡Texto copiado!
-				</PopoverContent>
+				<PopoverContent>¡Texto copiado!</PopoverContent>
 			</Popover>
 		</>
 	);

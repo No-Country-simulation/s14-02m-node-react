@@ -12,6 +12,8 @@ import {
 } from "@nextui-org/react";
 import Image from "next/image";
 import { useState } from "react";
+import Footer from "../Footer/footer";
+import icons from "@/components/Footer/ArrayIcons";
 
 export default function Nav() {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -29,11 +31,11 @@ export default function Nav() {
 					<Image
 						src="/Navbar/app-logo.png"
 						alt="Brand icon"
-						width={52.5}
-						height={48}
+						width={30}
+						height={30}
 					/>
 					<p className="font-bold text-inherit">
-						Talk<span className="uppercase text-secundario ">ia</span>mos
+						Talk<span className="uppercase text-primario ">ia</span>mos
 					</p>
 				</NavbarBrand>
 			</NavbarContent>
@@ -57,6 +59,7 @@ export default function Nav() {
 					</Button>
 				</NavbarItem> */}
 			</NavbarContent>
+			{/* Acá comienza el menu lateral */}
 			<NavbarMenu>
 				{menuItems.map((item, index) => (
 					<NavbarMenuItem key={`${item}-${index}`}>
@@ -102,6 +105,11 @@ export default function Nav() {
 						</Link>
 					</NavbarMenuItem>
 				))}
+				<div className="relative h-full">
+					<div className="absolute bottom-0">
+						<Footer appName="TalkIAmos" iconItems={icons} />
+					</div>
+				</div>
 			</NavbarMenu>
 		</Navbar>
 	);

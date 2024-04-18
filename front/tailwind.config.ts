@@ -16,31 +16,31 @@ const config: Config = {
       },
       colors: {
         "primario": "#e55958",
-        "secundario": "#6246ea",
+        "secundario": "#3DA9FC",
         "acento": "#e45858",
         "blanco": "#FFFFFE",
         "negro": "#2b2c34",
-        "gris": "#9CA3AF"
+        "gris": "#5F6C7B",
       }
     },
   },
   plugins: [
-		nextui({
-			themes: {
-				customTheme: {
-					colors: {
-						primary: {
-							foreground: "#FFFFFF",
-							DEFAULT: "#e55958",
-						},
-						secondary: {
-							foreground: "#FFFFFF",
-							DEFAULT: "#6246ea",
-						},
-					},
-				},
-			},
-		}),
-	],
+    nextui({
+      themes: {
+        customTheme: {
+          colors: {
+            primary: {
+              foreground: "#FFFFFF",
+              DEFAULT: "#e55958",
+            },
+            secondary: {
+              foreground: "#FFFFFF",
+              DEFAULT: "#6246ea",
+            },
+          },
+        },
+      },
+    }),
+  ],
 };
 export default config;

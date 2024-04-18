@@ -82,19 +82,11 @@ export default function UserForm() {
 
 	return (
 		<>
-			<div className="form-wrapper w-full mt-4">
+			<div className="form-wrapper w-full">
 				<form
 					className="flex flex-col gap-4 justify-center items-center"
 					onSubmit={handleSubmit}
 				>
-					<Textarea
-						className="customTheme"
-						placeholder="Introduce tu texto"
-						color="primary"
-						radius="lg"
-						variant="bordered"
-						onValueChange={setMessage}
-					/>
 					<Autocomplete
 						radius="full"
 						variant="bordered"
@@ -111,6 +103,14 @@ export default function UserForm() {
 							</AutocompleteItem>
 						))}
 					</Autocomplete>
+					<Textarea
+						className="customTheme"
+						placeholder="Introduce tu texto"
+						color="primary"
+						radius="lg"
+						variant="bordered"
+						onValueChange={setMessage}
+					/>
 					{/* Renderiza condicionalmente los botones con el spinner en función de listenLoading*/}
 
 					{!langValue || !message ? (

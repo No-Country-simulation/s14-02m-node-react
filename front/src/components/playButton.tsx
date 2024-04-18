@@ -38,15 +38,25 @@ export default function PlayButton({ chat }: { chat: IGroupedMessage }) {
 	};
 	console.log(history);
 
-	if (chat.audioUrl) return (
-		<Button className="min-w-[200px] space-x-2 bg-primario text-white" onClick={play}>
-			<SVGIcon icon="play" /> <span>Reproducir</span>
-			<audio ref={audioRef} src={chat.audioUrl}></audio>
-		</Button>
-	)
-	else return (
-		<Button className="min-w-[200px] space-x-2 bg-primario text-white" isIconOnly={true} onClick={handlePlay}>
-			<SVGIcon icon="listen" /> <span>{isLoading ? "Cargando..." : "Oír pronunciación"}</span>
-		</Button>
-	)
+	if (chat.audioUrl)
+		return (
+			<Button
+				className="min-w-[200px] space-x-2 bg-secundario text-white"
+				onClick={play}
+			>
+				<SVGIcon icon="play" /> <span>Reproducir</span>
+				<audio ref={audioRef} src={chat.audioUrl}></audio>
+			</Button>
+		);
+	else
+		return (
+			<Button
+				className="min-w-[200px] space-x-2 bg-secundario text-white"
+				isIconOnly={true}
+				onClick={handlePlay}
+			>
+				<SVGIcon icon="listen" />{" "}
+				<span>{isLoading ? "Cargando..." : "Oír pronunciación"}</span>
+			</Button>
+		);
 }
