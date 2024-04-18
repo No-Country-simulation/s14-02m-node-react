@@ -13,31 +13,22 @@ interface HistoryZustand {
 
 export const useHistoryStore = create(
 	persist<HistoryZustand>(
-		(set) => ({
+		(set, get) => ({
 			history: [],
-			updateHistory: (response) =>
-				set((state) => ({
-					history: [...state.history, response],
-				})),
-			updateAudio: (response, audioUrl) =>
-				set((state) => {
-					const findhistory = state.history.find(({ id }) => response.id === id);
-					if (findhistory) {
-						const filterHistory = state.history.filter(
-							({ id }) => response.id !== id
-						);
-						if (filterHistory) {
-							return {
-								history: [...filterHistory, { ...findhistory, audioUrl: audioUrl }],
-							};
-						}
-						return {
-							history: [...state.history, { ...findhistory, audioUrl: audioUrl }],
-						};
-					} else {
-						return { history: [...state.history] };
-					}
-				}),
+			updateHistory: (response) => {
+				const { history } = get()
+				set({ history: [...history, response] })
+			},
+			updateAudio: (response, audioUrl) => {
+				const { history } = get()
+				set({
+					history: history.map((message) =>
+						message.id === response.id
+							? { ...message, audioUrl: audioUrl }
+							: message
+					)
+				})
+			},
 			cleanHistory: () => set({ history: [] }),
 		}),
 		{ name: "history" }
