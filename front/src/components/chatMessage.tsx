@@ -9,7 +9,7 @@ import CopyButton from "./copyButton";
 
 export default function ChatMessage({ chat }: { chat: IGroupedMessage }) {
 	return (
-		<div className="flex flex-col md:flex-row-reverse md:justify-between rounded-xl gap-2 bg-secundario px-3 py-2 shadow-sm shadow-primario">
+		<div className="flex flex-col md:flex-row-reverse md:justify-between md:items-center rounded-xl gap-2 bg-secundario px-3 py-2 shadow-sm shadow-primario">
 			<div className="space-x-2">
 				<PlayButton chat={chat} />
 				<CopyButton copyText={chat.response.message} />
