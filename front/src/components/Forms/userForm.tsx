@@ -13,6 +13,9 @@ import {
 } from "@/interfaces/message.interface";
 import ErrorFormMessage from "./errorForm";
 
+const optionsLang: ILanguageCodes[] = ['en', 'es', 'zh', 'hi', 'fr', 'pt', 'it', 'de', 'ru', 'ga']
+const filteredLang = defaultLang.filter((lang) => optionsLang.includes(lang.to as ILanguageCodes))
+
 export default function UserForm() {
 	//Se actualiza desde onValueChange
 	const [message, setMessage] = useState("");
@@ -120,7 +123,7 @@ export default function UserForm() {
 					defaultSelectedKey={langValue}
 					className="autocomplete flex justify-center items-center max-w-[95%] mx-auto"
 				>
-					{defaultLang.map((lang) => (
+					{filteredLang.map((lang) => (
 						<AutocompleteItem key={lang.to} value={lang.to}>
 							{lang.name}
 						</AutocompleteItem>
