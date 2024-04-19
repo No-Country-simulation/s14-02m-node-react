@@ -22,7 +22,7 @@ export default function AyudaPage() {
 		base: "py-0 w-full",
 		title: "font-normal text-medium",
 		indicator: "text-medium text-[#e55958]",
-		content: "text-small px-2",
+		content: "text-small font-light px-2 pb-6",
 	};
 
 	return (
@@ -30,7 +30,7 @@ export default function AyudaPage() {
 			<ScrollShadow size={20} hideScrollBar>
 				<div className="w-full h-full flex flex-col justify-start items-center">
 					<div className="w-full max-w-2xl flex flex-col justify-center items-center p-4">
-						<h1 className="text-center">Ayuda</h1>
+						<h1 className="text-center text-2xl">Ayuda</h1>
 						<Tabs
 							aria-label="Options"
 							color="primary"
@@ -43,7 +43,7 @@ export default function AyudaPage() {
 								tab: "max-w-fit px-0 h-12",
 							}}
 						>
-							<Tab key="FAQ" title="FAQs" className="w-full">
+							<Tab key="FAQ" title="FAQs" className="w-full text-lg">
 								<Accordion variant="light" className="p-4">
 									{faq.map((f, index) => (
 										<AccordionItem
