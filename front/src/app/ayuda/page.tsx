@@ -22,7 +22,7 @@ export default function AyudaPage() {
 	return (
 		<>
 			<div className="w-full flex flex-col justify-center items-center">
-				<div className="w-full max-w-2xl flex flex-col justify-center items-center">
+				<div className="w-full max-w-2xl flex flex-col justify-center items-center px-4">
 					<h1 className="text-center">Ayuda</h1>
 					<Tabs
 						aria-label="Options"
