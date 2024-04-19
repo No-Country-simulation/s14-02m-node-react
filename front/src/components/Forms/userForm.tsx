@@ -68,6 +68,7 @@ export default function UserForm() {
 				//Actualiza el store con la solicitud del usuario y la respuesta de la API
 				updateHistory(messageBubble);
 				setMessage("")
+				setLimitMsg({...limitMsg, actual: 0})
 				setListenLoading(false);
 			} else {
 				alert("Por favor complete todos los campos...");
