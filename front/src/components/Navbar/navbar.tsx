@@ -42,7 +42,7 @@ export default function Nav() {
 
 			<NavbarContent className="hidden sm:flex gap-4" justify="center">
 				<NavbarItem isActive>
-					<Link href="#" aria-current="page">
+					<Link href="/ayuda" aria-current="page">
 						Ayuda
 					</Link>
 				</NavbarItem>
