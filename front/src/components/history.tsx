@@ -1,7 +1,7 @@
 "use client";
 import { useHistoryStore } from "@/stores/historyStore";
 import ChatMessage from "./chatMessage";
-import { Button, ScrollShadow } from "@nextui-org/react";
+import { ScrollShadow } from "@nextui-org/react";
 
 export default function History() {
 	const { history, cleanHistory } = useHistoryStore();
@@ -12,10 +12,6 @@ export default function History() {
 					{history.map((chat) => (
 						<ChatMessage key={chat.id} chat={chat} />
 					))}
-				</div>
-				{/* El botón de borrar puede quedar en otra parte llamando a cleanHistory */}
-				<div className="flex flex-row justify-center my-3">
-					<Button onClick={() => cleanHistory()}>Borrar conversaciones</Button>
 				</div>
 			</ScrollShadow>
 		);
