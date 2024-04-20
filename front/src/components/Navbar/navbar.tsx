@@ -9,15 +9,18 @@ import {
 	NavbarMenu,
 	NavbarMenuItem,
 	Link,
+	Button,
 } from "@nextui-org/react";
 import Image from "next/image";
 import { useState } from "react";
 import Footer from "../Footer/footer";
 import icons from "@/components/Footer/ArrayIcons";
+import { useHistoryStore } from "@/stores/historyStore";
+import DeleteIcon from "./deleteIcon";
 
 export default function Nav() {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+	const { history, cleanHistory } = useHistoryStore();
 	const menuItems = ["Ayuda", "Sobre nosotros"];
 
 	return (
@@ -42,7 +45,12 @@ export default function Nav() {
 
 			<NavbarContent className="hidden sm:flex gap-4" justify="center">
 				<NavbarItem isActive>
-					<Link href="#" aria-current="page">
+					<Link
+						href="/ayuda"
+						aria-current="page"
+						color="primary"
+						className="customTheme"
+					>
 						Ayuda
 					</Link>
 				</NavbarItem>
@@ -53,11 +61,24 @@ export default function Nav() {
 				</NavbarItem>
 			</NavbarContent>
 			<NavbarContent justify="end">
-				{/* <NavbarItem>
-					<Button as={Link} color="primary" href="#" variant="flat">
-						Sign Up
-					</Button>
-				</NavbarItem> */}
+				{history.length > 0 ? (
+					<NavbarItem>
+						<Button isIconOnly variant="light" onClick={() => cleanHistory()}>
+							<DeleteIcon fillColor="#EF4565" />
+						</Button>
+					</NavbarItem>
+				) : (
+					<NavbarItem>
+						<Button
+							isIconOnly
+							isDisabled
+							variant="light"
+							onClick={() => cleanHistory()}
+						>
+							<DeleteIcon fillColor="#EF4565" />
+						</Button>
+					</NavbarItem>
+				)}
 			</NavbarContent>
 			{/* Acá comienza el menu lateral */}
 			<NavbarMenu>

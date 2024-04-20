@@ -36,7 +36,6 @@ export default function PlayButton({ chat }: { chat: IGroupedMessage }) {
 	const play = () => {
 		audioRef.current?.play();
 	};
-	console.log(history);
 
 	if (chat.audioUrl)
 		return (

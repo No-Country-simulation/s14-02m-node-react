@@ -1,11 +1,12 @@
-import { HttpException, Injectable, HttpStatus } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { OpenAI } from 'openai';
-import { Payload } from './interfaces/payload.interface';
+import { IErrors, Payload } from './interfaces/payload.interface';
 import * as fs from 'fs';
 import { resolve } from 'path';
 import * as crypto from 'crypto';
 import { getLangByISO } from './utils/getLangByISO';
 import { QUERY_TO_TRANSLATE } from './utils/gpt.queries';
+import { detectError, processLanguage } from './utils/gpt.tools';
 
 @Injectable()
 export class GptService {
@@ -34,24 +35,36 @@ export class GptService {
         },
         {
           role: 'user',
-          content: `
-          {
-            to: ${langToTranslate.name},
-            text: ${message},
-          }`,
+          content: `Traduce al ${langToTranslate.name}: "${message}"`,
         },
       ],
-      response_format: { type: 'json_object' },
+      tools: [processLanguage, detectError],
+      tool_choice: 'auto',
     });
 
-    const result = response.choices[0].message.content;
-
-    if (result.includes('error')) {
-      const errorMessage = JSON.parse(result);
-      throw new HttpException(errorMessage.error, HttpStatus.BAD_REQUEST);
+    const responseGPT = response.choices[0].message;
+    // llamados a las funciones de openai
+    if (responseGPT.tool_calls) {
+      //extracción de las funciones si
+      const functionPrincipal = responseGPT.tool_calls.find((f) => f.function.name === 'traductor');
+      const errorDetector = responseGPT.tool_calls.find((f) => f.function.name === 'detector');
+      //si encuentra error lo devuelve
+      if (errorDetector) {
+        const { arguments: error } = errorDetector.function;
+        const jsonError: IErrors = JSON.parse(error);
+        const defaultMessageError = {
+          error: `Mensaje no reconocido: ${jsonError.error} no se puede traducir a ${langToTranslate.name}`,
+        };
+        return defaultMessageError;
+      }
+      //si pasó el error entonces devuelve la traducción
+      if (functionPrincipal) {
+        const { arguments: props } = functionPrincipal.function;
+        const jsonProps = JSON.parse(props);
+        return jsonProps;
+      }
     }
-
-    return result;
+    return responseGPT;
   }
 
   async convertToAudio(

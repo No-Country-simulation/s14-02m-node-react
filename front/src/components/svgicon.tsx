@@ -9,7 +9,7 @@ export default function SVGIcon({
 				className="w-4 h-4 text-white"
 				stroke="currentColor"
 				fill="currentColor"
-				stroke-width="0"
+				strokeWidth="0"
 				viewBox="0 0 512 512"
 				xmlns="http://www.w3.org/2000/svg"
 			>
@@ -22,7 +22,7 @@ export default function SVGIcon({
 				className="w-4 h-4 text-white"
 				stroke="currentColor"
 				fill="currentColor"
-				stroke-width="0"
+				strokeWidth="0"
 				viewBox="0 0 512 512"
 				xmlns="http://www.w3.org/2000/svg"
 			>
@@ -35,7 +35,7 @@ export default function SVGIcon({
 				className="w-4 h-4 text-white"
 				stroke="currentColor"
 				fill="currentColor"
-				stroke-width="0"
+				strokeWidth="0"
 				viewBox="0 0 512 512"
 				xmlns="http://www.w3.org/2000/svg"
 			>
@@ -50,7 +50,7 @@ export default function SVGIcon({
 				className="w-4 h-4 text-white"
 				stroke="currentColor"
 				fill="currentColor"
-				stroke-width="0"
+				strokeWidth="0"
 				viewBox="0 0 512 512"
 				xmlns="http://www.w3.org/2000/svg"
 			>
