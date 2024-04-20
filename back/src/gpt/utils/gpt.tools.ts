@@ -4,13 +4,13 @@ export const processLanguage: ChatCompletionTool = {
   type: 'function',
   function: {
     name: 'traductor',
-    description: 'Traduce una frase o palabra ingresado por el usuario. Si la frase es inentendible muestra el problema',
+    description: 'El usuario necesita traducir una palabra o frase, interpreta el mensaje y traduce el concepto. Siempre responderás el mensaje traducido, nunca le devolverás al usuario su misma frase en su idioma original.',
     parameters: {
       type: 'object',
       properties: {
         translated: {
           type: 'string',
-          description: 'Texto traducido desde el idioma original al idioma solicitado',
+          description: 'Traducción resultante desde el idioma original al idioma solicitado',
         },
         from: {
           type: 'string',
