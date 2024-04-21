@@ -54,7 +54,6 @@ export default function AboutUs() {
 						</Tab>
 					</Tabs>
 				</div>
-				<Footer appName="TalkIAmos" iconItems={icons} />
 			</div>
 		</>
 	);
