@@ -1,7 +1,7 @@
 "use client";
 import { useHistoryStore } from "@/stores/historyStore";
 import ChatMessage from "./chatMessage";
-import { ScrollShadow } from "@nextui-org/react";
+import { Button, ScrollShadow } from "@nextui-org/react";
 
 export default function History() {
 	const { history, cleanHistory } = useHistoryStore();
@@ -12,6 +12,10 @@ export default function History() {
 					{history.map((chat) => (
 						<ChatMessage key={chat.id} chat={chat} />
 					))}
+					<Button className="w-1/4 bg-primario text-white" onClick={cleanHistory}>
+						{" "}
+						Eliminar traducciones{" "}
+					</Button>
 				</div>
 			</ScrollShadow>
 		);
