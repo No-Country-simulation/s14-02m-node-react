@@ -38,12 +38,12 @@ export default function Footer({ iconItems, appName }: FooterProps) {
 					</div>
 					<div className="flex flex-wrap text-[#9CA3AF] text-base gap-1 justify-center items-center">
 						<div className="flex flex-row">
-                            <span>
-                                <CopyrightIcon fillColor="#9CA3AF" width={24} height={24} />
-                            </span>
-                            <span>{currentYear}</span>
-                            <span>{appName}.</span>
-                        </div>
+							<span>
+								<CopyrightIcon fillColor="#9CA3AF" width={24} height={24} />
+							</span>
+							<span>{currentYear}</span>
+							<span>{appName}.</span>
+						</div>
 						<span>Todos los derechos reservados.</span>
 					</div>
 				</div>

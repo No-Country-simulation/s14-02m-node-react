@@ -1,0 +1,76 @@
+{
+	"team": [
+		{
+			"id": 1,
+			"name": "Felipe Calderon",
+			"rol": "Project Manager",
+			"img": "url-img",
+			"linkedin": "https://www.linkedin.com/in/felipecalderone/",
+			"github": "https://github.com/felipecalderon"
+		},
+		{
+			"id": 2,
+			"name": "Facundo Chiabotto",
+			"rol": "Backend",
+			"img": "url-img",
+			"linkedin": "https://www.linkedin.com/in/felipecalderone/",
+			"github": "https://github.com/felipecalderon"
+		},
+		{
+			"id": 3,
+			"name": "Esteban Sayago",
+			"rol": "Backend",
+			"img": "url-img",
+			"linkedin": "https://www.linkedin.com/in/felipecalderone/",
+			"github": "https://github.com/felipecalderon"
+		},
+		{
+			"id": 4,
+			"name": "Jordan Esquivel",
+			"rol": "Backend",
+			"img": "url-img",
+			"linkedin": "https://www.linkedin.com/in/felipecalderone/",
+			"github": "https://github.com/felipecalderon"
+		},
+		{
+			"id": 5,
+			"name": "Elizabeth Leon",
+			"rol": "UX/UI",
+			"img": "url-img",
+			"linkedin": "https://www.linkedin.com/in/felipecalderone/",
+			"github": "https://github.com/felipecalderon"
+		},
+		{
+			"id": 6,
+			"name": "Handrych Márquez",
+			"rol": "Tester Q/A",
+			"img": "url-img",
+			"linkedin": "https://www.linkedin.com/in/felipecalderone/",
+			"github": "https://github.com/felipecalderon"
+		},
+		{
+			"id": 7,
+			"name": "Facundo Contreras",
+			"rol": "Frontend",
+			"img": "url-img",
+			"linkedin": "https://www.linkedin.com/in/felipecalderone/",
+			"github": "https://github.com/felipecalderon"
+		},
+		{
+			"id": 8,
+			"name": "Pablo Gutiérrez",
+			"rol": "Frontend",
+			"img": "url-img",
+			"linkedin": "https://www.linkedin.com/in/felipecalderone/",
+			"github": "https://github.com/felipecalderon"
+		},
+		{
+			"id": 9,
+			"name": "Lucas Id Betan",
+			"rol": "Frontend",
+			"img": "url-img",
+			"linkedin": "https://www.linkedin.com/in/felipecalderone/",
+			"github": "https://github.com/felipecalderon"
+		}
+	]
+}

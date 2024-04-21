@@ -13,8 +13,21 @@ import {
 } from "@/interfaces/message.interface";
 import ErrorFormMessage from "./errorForm";
 
-const optionsLang: ILanguageCodes[] = ['en', 'es', 'zh', 'hi', 'fr', 'pt', 'it', 'de', 'ru', 'ga']
-const filteredLang = defaultLang.filter((lang) => optionsLang.includes(lang.to as ILanguageCodes))
+const optionsLang: ILanguageCodes[] = [
+	"en",
+	"es",
+	"zh",
+	"hi",
+	"fr",
+	"pt",
+	"it",
+	"de",
+	"ru",
+	"ga",
+];
+const filteredLang = defaultLang.filter((lang) =>
+	optionsLang.includes(lang.to as ILanguageCodes)
+);
 
 export default function UserForm() {
 	//Se actualiza desde onValueChange
@@ -29,9 +42,9 @@ export default function UserForm() {
 	const [limitMsg, setLimitMsg] = useState({
 		limit: 100,
 		actual: 0,
-	})
-	const [openError, setOpenError] = useState(false)
-	const [errorMsg, setErrorMsg] = useState('')
+	});
+	const [openError, setOpenError] = useState(false);
+	const [errorMsg, setErrorMsg] = useState("");
 	const msgId = crypto.randomBytes(8).toString("hex");
 
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -57,13 +70,12 @@ export default function UserForm() {
 					const parseRes: IBackendResponse = await response.json();
 
 					if (parseRes.error) {
-						setMessage("")
-						setOpenError(true)
-						setErrorMsg(parseRes.error)
-						setLimitMsg({ ...limitMsg, actual: 0 })
+						setMessage("");
+						setOpenError(true);
+						setErrorMsg(parseRes.error);
+						setLimitMsg({ ...limitMsg, actual: 0 });
 						setListenLoading(false);
 					} else {
-
 						const messageBubble: IGroupedMessage = {
 							id: msgId,
 							client: {
@@ -80,8 +92,8 @@ export default function UserForm() {
 						};
 						//Actualiza el store con la solicitud del usuario y la respuesta de la API
 						updateHistory(messageBubble);
-						setMessage("")
-						setLimitMsg({ ...limitMsg, actual: 0 })
+						setMessage("");
+						setLimitMsg({ ...limitMsg, actual: 0 });
 						setListenLoading(false);
 					}
 				}
@@ -99,17 +111,17 @@ export default function UserForm() {
 	};
 
 	const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-		let target = e.target.value
+		let target = e.target.value;
 		if (target.length <= limitMsg.limit) {
-			setLimitMsg({ ...limitMsg, actual: target.length })
-			setMessage(target)
+			setLimitMsg({ ...limitMsg, actual: target.length });
+			setMessage(target);
 		}
-	}
+	};
 
 	return (
 		<>
 			<form
-				className="flex flex-col gap-4 justify-center items-center md:w-4/5 lg:w-3/5 mx-auto w-full"
+				className="flex flex-col gap-4 justify-center items-center md:w-4/5 lg:w-3/5 mx-auto w-full bg-transparent"
 				onSubmit={handleSubmit}
 			>
 				<Autocomplete
@@ -121,7 +133,7 @@ export default function UserForm() {
 					size="md"
 					onSelectionChange={handleSelectChange}
 					defaultSelectedKey={langValue}
-					className="autocomplete flex justify-center items-center max-w-[95%] mx-auto"
+					className="autocomplete flex justify-center items-center max-w-[95%] mx-auto bg-transparent"
 				>
 					{filteredLang.map((lang) => (
 						<AutocompleteItem key={lang.to} value={lang.to}>
@@ -130,7 +142,7 @@ export default function UserForm() {
 					))}
 				</Autocomplete>
 				<Textarea
-					className="customTheme bg-white"
+					className="customTheme bg-transparent"
 					placeholder="Introduce tu texto"
 					color="primary"
 					radius="lg"
@@ -139,7 +151,11 @@ export default function UserForm() {
 					maxLength={limitMsg.limit}
 					onChange={handleInputChange}
 				/>
-				<p className={`w-full text-xs text-right pr-3 -mt-10 mb-2 ${limitMsg.actual === limitMsg.limit && 'font-semibold text-primario'}`}>
+				<p
+					className={`w-full text-xs text-right pr-3 -mt-10 mb-2 ${
+						limitMsg.actual === limitMsg.limit && "font-semibold text-primario"
+					}`}
+				>
 					{limitMsg.actual}/{limitMsg.limit}
 				</p>
 				{/* Renderiza condicionalmente los botones con el spinner en función de listenLoading*/}
@@ -148,7 +164,7 @@ export default function UserForm() {
 					<Button
 						className="min-w-full mx-2 bg-primario/85 hover:cursor-not-allowed"
 						disabled={true}
-						children="Traducir"
+						children="Por favor complete todos los campos"
 						type="submit"
 						color="primary"
 					/>
@@ -170,7 +186,11 @@ export default function UserForm() {
 					/>
 				)}
 			</form>
-			<ErrorFormMessage message={errorMsg} open={openError} setOpen={setOpenError} />
+			<ErrorFormMessage
+				message={errorMsg}
+				open={openError}
+				setOpen={setOpenError}
+			/>
 		</>
 	);
 }
