@@ -3,6 +3,6 @@ export interface Iteam {
     name: string,
     rol: string,
     img: string,
-    linkedin: string,
-    github: string
+    linkOne: string,
+    linkTwo: string,
 }

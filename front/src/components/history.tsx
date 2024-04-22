@@ -14,7 +14,12 @@ export default function History() {
 					))}
 					{/* Este botón de borrar aparece solo en tablet/desktop */}
 					<div className="hidden md:block">
-						<Button className="w-1/4 bg-primario text-white" onClick={() => cleanHistory()}>Borrar conversaciones</Button>
+						<Button
+							className="w-1/4 bg-primario text-white"
+							onClick={() => cleanHistory()}
+						>
+							Borrar conversaciones
+						</Button>
 					</div>
 				</div>
 			</ScrollShadow>
