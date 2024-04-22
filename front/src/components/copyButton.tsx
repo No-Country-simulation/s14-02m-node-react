@@ -40,7 +40,7 @@ export default function CopyButton({ copyText }: { copyText: string }) {
 					<Button
 						onClick={handleCopyClick}
 						isIconOnly
-						className="bg-secundario fill-slate-400"
+						className="bg-secundario fill-slate-400 text-white"
 					>
 						<SVGIcon icon="copy" />
 					</Button>

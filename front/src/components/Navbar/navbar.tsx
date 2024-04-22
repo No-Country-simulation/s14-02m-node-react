@@ -17,11 +17,26 @@ import Footer from "../Footer/footer";
 import icons from "@/components/Footer/ArrayIcons";
 import { useHistoryStore } from "@/stores/historyStore";
 import DeleteIcon from "./deleteIcon";
+import { usePathname } from "next/navigation";
 
 export default function Nav() {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const { history, cleanHistory } = useHistoryStore();
-	const menuItems = ["Ayuda", "Sobre nosotros"];
+	const menuItems = [
+		{
+			name: 'Ayuda',
+			path: '/ayuda',
+			image: '/Navbar/help.png'
+		},
+		{
+			name: 'Sobre Nosotros',
+			path: '/about',
+			image: '/Navbar/about-us.png'
+		},
+	];
+
+	const path = usePathname()
+	console.log({ path });
 
 	return (
 		<Navbar onMenuOpenChange={setIsMenuOpen}>
@@ -46,21 +61,20 @@ export default function Nav() {
 			</NavbarContent>
 
 			<NavbarContent className="hidden sm:flex gap-4" justify="center">
-				<NavbarItem isActive>
-					<Link
-						href="/ayuda"
-						aria-current="page"
-						color="primary"
-						className="customTheme"
-					>
-						Ayuda
-					</Link>
-				</NavbarItem>
-				<NavbarItem>
-					<Link color="foreground" href="/about">
-						Sobre Nosotros
-					</Link>
-				</NavbarItem>
+				{
+					menuItems.map(menu => (
+						<>
+							<NavbarMenuItem key={menu.path} isActive={menu.path === path}>
+								<Link
+									href={menu.path}
+									className={`customTheme flex flex-row justify-start items-center gap-2 ${menu.path === path ? 'text-primario' : 'text-gris'}`}
+								>
+									{menu.name}
+								</Link>
+							</NavbarMenuItem>
+						</>
+					))
+				}
 			</NavbarContent>
 			{/* Boton de borrar historial, aparece con breakpoints md */}
 			<NavbarContent justify="end">
@@ -90,42 +104,21 @@ export default function Nav() {
 			</NavbarContent>
 			{/* Acá comienza el menu lateral */}
 			<NavbarMenu>
-				{menuItems.map((item, index) => (
-					<NavbarMenuItem key={`${item}-${index}`}>
-						{item === "Ayuda" ? (
-							<Link
-								href="/ayuda"
-								className="flex flex-row justify-start items-center gap-2"
-							>
-								<Image src="/Navbar/help.png" alt="help-icon" width={24} height={24} />
-								<p>{item}</p>
-							</Link>
-						) : item === "Sobre nosotros" ? (
-							<Link
-								href="/about"
-								className="flex flex-row justify-start items-center gap-2"
-							>
-								<Image
-									src="/Navbar/about-us.png"
-									alt="help-icon"
-									width={24}
-									height={24}
-								/>
-								<>{item}</>
-							</Link>
-						) : (
-							<>
-								<Image
-									src="/Navbar/chat-bubble.png"
-									alt="empty-space"
-									width={24}
-									height={24}
-								/>
-								{item}
-							</>
-						)}
-					</NavbarMenuItem>
-				))}
+				{
+					menuItems.map(menu => (
+						<>
+							<NavbarMenuItem key={menu.name} isActive={menu.path === path}>
+								<Link
+									href={menu.path}
+									className={`flex flex-row justify-start items-center gap-2 ${menu.path === path ? 'text-primario' : 'text-gris'}`}
+								>
+									<Image src={menu.image} alt="help-icon" width={24} height={24} />
+									{menu.name}
+								</Link>
+							</NavbarMenuItem>
+						</>
+					))
+				}
 				<div className="relative h-full">
 					<div className="absolute bottom-0">
 						<Footer appName="TalkIAmos" iconItems={icons} />

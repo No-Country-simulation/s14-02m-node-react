@@ -6,13 +6,21 @@ import { filterLanguage } from "@/utils/filterLanguage";
 import Image from "next/image";
 import PlayButton from "./playButton";
 import CopyButton from "./copyButton";
+import ShareButton from "./shareButton";
+import { useHistoryStore } from "@/stores/historyStore";
+import DeleteIcon from "@/components/Navbar/deleteIcon";
 
 export default function ChatMessage({ chat }: { chat: IGroupedMessage }) {
+	const { cleanOneMessage } = useHistoryStore()
 	return (
-		<div className="flex flex-col md:flex-row-reverse md:justify-between md:items-center rounded-xl gap-4 bg-white px-3 py-2 shadow-md">
-			<div className="space-x-2">
+		<div className="flex flex-col md:flex-row-reverse md:justify-between md:items-center rounded-xl gap-2 bg-white px-3 py-2 shadow-md">
+			<div className="flex flex-row gap-2">
 				<PlayButton chat={chat} />
 				<CopyButton copyText={chat.response.message} />
+				<ShareButton message={chat.response.message} />
+				<div className="p-2 w-10 h-10 rounded-lg hover:scale-125 transition-all cursor-pointer" onClick={() => cleanOneMessage(chat.id)}>
+					<DeleteIcon fillColor="#EF4565" />
+				</div>
 			</div>
 			<div className="flex flex-col gap-4">
 				<ResponseMessageBox message={chat.response} />
