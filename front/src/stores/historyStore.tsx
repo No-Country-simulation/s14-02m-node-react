@@ -9,6 +9,7 @@ interface HistoryZustand {
 	updateHistory: (response: IGroupedMessage) => void;
 	updateAudio: (response: IGroupedMessage, audioUrl: string) => void;
 	cleanHistory: () => void;
+	cleanOneMessage: (id: string) => void;
 }
 
 export const useHistoryStore = create(
@@ -30,6 +31,12 @@ export const useHistoryStore = create(
 				})
 			},
 			cleanHistory: () => set({ history: [] }),
+			cleanOneMessage: (id) => {
+				const { history } = get()
+				const filteredHistory = history.filter((message) => message.id !== id)
+				set({history: filteredHistory})
+			}
+
 		}),
 		{ name: "history" }
 	)
