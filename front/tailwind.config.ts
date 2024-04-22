@@ -18,7 +18,7 @@ const config: Config = {
         "primario": "#e55958",
         "secundario": "#3DA9FC",
         "acento": "#e45858",
-        "blanco": "#FFFFFE",
+        "blanco": "#FFFFFF",
         "negro": "#2b2c34",
         "gris": "#5F6C7B",
       }

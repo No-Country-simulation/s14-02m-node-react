@@ -1,0 +1,20 @@
+{
+	"faq": [
+		{
+			"question": "¿Debo pagar para usar la app?",
+			"response": "No, la aplicación es de uso gratuito para todo público."
+		},
+		{
+			"question": "¿Cómo traduzco frases?",
+			"response": "Debes ingresar el texto escrito en tu lengua nativa, en la parte inferior de la pantalla y seleccionar el idioma al que deseas traducirlo."
+		},
+		{
+			"question": "¿Cómo copio una traducción?",
+			"response": "Al generar una traducción verás un ícono cuadrado al costado de “oir pronunciación”, debes hacer clic al ícono y automáticamente quedará guardado en el portapapeles de tu dispositivo."
+		},
+		{
+			"question": "¿Cómo escucho la pronunciación de la traducción?",
+			"response": "Para escuchar la pronunciación primero debes verificar que el volumen de tu dispositivo esté en un nivel adecuado, luego de traducir la oración verás el botón para generar la pronunciación, luego de hacer clic obtendrás la opción para reproducir dicho audio generado."
+		}
+	]
+}

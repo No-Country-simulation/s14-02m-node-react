@@ -8,9 +8,10 @@ export class GptController {
   constructor(private readonly gptService: GptService) {}
 
   @Post('/translate')
-  async translate(@Body() requestBody: Payload) {
-    const response = JSON.parse(await this.gptService.translate(requestBody));
-    return response;
+  async translate(@Body() requestBody: Payload, @Res() response: Response) {
+    const res = await this.gptService.translate(requestBody);
+    if(res.error) return response.status(406).json(res)
+    return response.status(200).send(res);
   }
 
   @Post('/translate-to-audio')

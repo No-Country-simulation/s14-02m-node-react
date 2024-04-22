@@ -11,6 +11,23 @@ import {
 	IGroupedMessage,
 	ISingleMessage,
 } from "@/interfaces/message.interface";
+import ErrorFormMessage from "./errorForm";
+
+const optionsLang: ILanguageCodes[] = [
+	"en",
+	"es",
+	"zh",
+	"hi",
+	"fr",
+	"pt",
+	"it",
+	"de",
+	"ru",
+	"ga",
+];
+const filteredLang = defaultLang.filter((lang) =>
+	optionsLang.includes(lang.to as ILanguageCodes)
+);
 
 export default function UserForm() {
 	//Se actualiza desde onValueChange
@@ -25,8 +42,9 @@ export default function UserForm() {
 	const [limitMsg, setLimitMsg] = useState({
 		limit: 100,
 		actual: 0,
-	})
-
+	});
+	const [openError, setOpenError] = useState(false);
+	const [errorMsg, setErrorMsg] = useState("");
 	const msgId = crypto.randomBytes(8).toString("hex");
 
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -48,28 +66,37 @@ export default function UserForm() {
 						to: langValue,
 					}),
 				});
-				// console.log(response)
-				const parseRes: IBackendResponse = await response.json();
-				console.log({ parseRes });
-				const messageBubble: IGroupedMessage = {
-					id: msgId,
-					client: {
-						langCode: parseRes.from as ILanguageCodes,
-						message: tempUserMessage.message,
-						rol: ChatRol.USER,
-					},
-					response: {
-						langCode: tempUserMessage.langCode as ILanguageCodes,
-						message: parseRes.translated,
-						rol: ChatRol.IA,
-					},
-					audioUrl: null,
-				};
-				//Actualiza el store con la solicitud del usuario y la respuesta de la API
-				updateHistory(messageBubble);
-				setMessage("")
-				setLimitMsg({...limitMsg, actual: 0})
-				setListenLoading(false);
+				if (response.ok) {
+					const parseRes: IBackendResponse = await response.json();
+
+					if (parseRes.error) {
+						setMessage("");
+						setOpenError(true);
+						setErrorMsg(parseRes.error);
+						setLimitMsg({ ...limitMsg, actual: 0 });
+						setListenLoading(false);
+					} else {
+						const messageBubble: IGroupedMessage = {
+							id: msgId,
+							client: {
+								langCode: parseRes.from as ILanguageCodes,
+								message: tempUserMessage.message,
+								rol: ChatRol.USER,
+							},
+							response: {
+								langCode: tempUserMessage.langCode as ILanguageCodes,
+								message: parseRes.translated,
+								rol: ChatRol.IA,
+							},
+							audioUrl: null,
+						};
+						//Actualiza el store con la solicitud del usuario y la respuesta de la API
+						updateHistory(messageBubble);
+						setMessage("");
+						setLimitMsg({ ...limitMsg, actual: 0 });
+						setListenLoading(false);
+					}
+				}
 			} else {
 				alert("Por favor complete todos los campos...");
 			}
@@ -84,77 +111,86 @@ export default function UserForm() {
 	};
 
 	const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-		let target = e.target.value
-		if(target.length <= limitMsg.limit){
-			setLimitMsg({...limitMsg, actual: target.length})
-			setMessage(target)
+		let target = e.target.value;
+		if (target.length <= limitMsg.limit) {
+			setLimitMsg({ ...limitMsg, actual: target.length });
+			setMessage(target);
 		}
-	}
+	};
 
 	return (
 		<>
-				<form
-					className="flex flex-col gap-4 justify-center items-center md:w-4/5 lg:w-3/5 mx-auto w-full"
-					onSubmit={handleSubmit}
+			<form
+				className="flex flex-col gap-4 justify-center items-center md:w-4/5 lg:w-3/5 mx-auto w-full bg-transparent"
+				onSubmit={handleSubmit}
+			>
+				<Autocomplete
+					radius="full"
+					variant="bordered"
+					placeholder="Idioma"
+					label="Seleccione Idioma"
+					labelPlacement="outside-left"
+					size="md"
+					onSelectionChange={handleSelectChange}
+					defaultSelectedKey={langValue}
+					className="autocomplete flex justify-center items-center max-w-[95%] mx-auto bg-transparent"
 				>
-					<Autocomplete
-						radius="full"
-						variant="bordered"
-						placeholder="Idioma"
-						label="Seleccione Idioma"
-						labelPlacement="outside-left"
-						size="md"
-						onSelectionChange={handleSelectChange}
-						defaultSelectedKey={langValue}
-						className="autocomplete flex justify-center items-center max-w-[95%] mx-auto"
-					>
-						{defaultLang.map((lang) => (
-							<AutocompleteItem key={lang.to} value={lang.to}>
-								{lang.name}
-							</AutocompleteItem>
-						))}
-					</Autocomplete>
-					<Textarea
-						className="customTheme bg-white"
-						placeholder="Introduce tu texto"
-						color="primary"
-						radius="lg"
-						variant="bordered"
-						value={message}
-						maxLength={limitMsg.limit}
-						onChange={handleInputChange}
-					/>
-					<p className={`w-full text-xs text-right pr-3 -mt-10 mb-2 ${limitMsg.actual === limitMsg.limit && 'font-semibold text-primario'}`}>
-						{limitMsg.actual}/{limitMsg.limit}
-					</p>
-					{/* Renderiza condicionalmente los botones con el spinner en función de listenLoading*/}
+					{filteredLang.map((lang) => (
+						<AutocompleteItem key={lang.to} value={lang.to}>
+							{lang.name}
+						</AutocompleteItem>
+					))}
+				</Autocomplete>
+				<Textarea
+					className="customTheme bg-transparent"
+					placeholder="Introduce tu texto"
+					color="primary"
+					radius="lg"
+					variant="bordered"
+					value={message}
+					maxLength={limitMsg.limit}
+					onChange={handleInputChange}
+				/>
+				<p
+					className={`w-full text-xs text-right pr-3 -mt-10 mb-2 ${
+						limitMsg.actual === limitMsg.limit && "font-semibold text-primario"
+					}`}
+				>
+					{limitMsg.actual}/{limitMsg.limit}
+				</p>
+				{/* Renderiza condicionalmente los botones con el spinner en función de listenLoading*/}
 
-					{!langValue || !message ? (
-						<Button
-							className="min-w-full mx-2 bg-primario/85 hover:cursor-not-allowed"
-							disabled = {true}
-							children="Traducir"
-							type="submit"
-							color="primary"
-						/>
-					) : !listenLoading ? (
-						<Button
-							className="min-w-full mx-2 bg-primario"
-							children="Traducir"
-							type="submit"
-							color="primary"
-							isLoading={false}
-						/>
-					) : (
-						<Button
-							className="min-w-full mx-2 bg-primario/70"
-							children="Traduciendo"
-							type="submit"
-							color="primary"
-							isLoading={true}
-						/>
-					)}
-				</form>
+				{!langValue || !message ? (
+					<Button
+						className="min-w-full mx-2 bg-primario/85 hover:cursor-not-allowed"
+						disabled={true}
+						children="Por favor complete todos los campos"
+						type="submit"
+						color="primary"
+					/>
+				) : !listenLoading ? (
+					<Button
+						className="min-w-full mx-2 bg-primario"
+						children="Traducir"
+						type="submit"
+						color="primary"
+						isLoading={false}
+					/>
+				) : (
+					<Button
+						className="min-w-full mx-2 bg-primario/70"
+						children="Traduciendo"
+						type="submit"
+						color="primary"
+						isLoading={true}
+					/>
+				)}
+			</form>
+			<ErrorFormMessage
+				message={errorMsg}
+				open={openError}
+				setOpen={setOpenError}
+			/>
 		</>
 	);
 }

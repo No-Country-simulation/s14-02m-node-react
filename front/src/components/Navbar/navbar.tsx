@@ -9,15 +9,18 @@ import {
 	NavbarMenu,
 	NavbarMenuItem,
 	Link,
+	Button,
 } from "@nextui-org/react";
 import Image from "next/image";
 import { useState } from "react";
 import Footer from "../Footer/footer";
 import icons from "@/components/Footer/ArrayIcons";
+import { useHistoryStore } from "@/stores/historyStore";
+import DeleteIcon from "./deleteIcon";
 
 export default function Nav() {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+	const { history, cleanHistory } = useHistoryStore();
 	const menuItems = ["Ayuda", "Sobre nosotros"];
 
 	return (
@@ -28,12 +31,14 @@ export default function Nav() {
 					className="sm:hidden"
 				/>
 				<NavbarBrand>
-					<Image
-						src="/Navbar/app-logo.png"
-						alt="Brand icon"
-						width={30}
-						height={30}
-					/>
+					<Link href="/">
+						<Image
+							src="/Navbar/app-logo.png"
+							alt="Brand icon"
+							width={30}
+							height={30}
+						/>
+					</Link>
 					<p className="font-bold text-inherit">
 						Talk<span className="uppercase text-primario ">ia</span>mos
 					</p>
@@ -42,67 +47,83 @@ export default function Nav() {
 
 			<NavbarContent className="hidden sm:flex gap-4" justify="center">
 				<NavbarItem isActive>
-					<Link href="#" aria-current="page">
+					<Link
+						href="/ayuda"
+						aria-current="page"
+						color="primary"
+						className="customTheme"
+					>
 						Ayuda
 					</Link>
 				</NavbarItem>
 				<NavbarItem>
-					<Link color="foreground" href="#">
+					<Link color="foreground" href="/about">
 						Sobre Nosotros
 					</Link>
 				</NavbarItem>
 			</NavbarContent>
+			{/* Boton de borrar historial, aparece con breakpoints md */}
 			<NavbarContent justify="end">
-				{/* <NavbarItem>
-					<Button as={Link} color="primary" href="#" variant="flat">
-						Sign Up
-					</Button>
-				</NavbarItem> */}
+				{history.length > 0 ? (
+					<NavbarItem>
+						<Button
+							className="md:hidden"
+							isIconOnly
+							variant="light"
+							onClick={() => cleanHistory()}
+						>
+							<DeleteIcon fillColor="#EF4565" />
+						</Button>
+					</NavbarItem>
+				) : (
+					<NavbarItem>
+						<Button
+							className="hidden"
+							isIconOnly
+							variant="light"
+							onClick={() => cleanHistory()}
+						>
+							<DeleteIcon fillColor="#EF4565" />
+						</Button>
+					</NavbarItem>
+				)}
 			</NavbarContent>
 			{/* Acá comienza el menu lateral */}
 			<NavbarMenu>
 				{menuItems.map((item, index) => (
 					<NavbarMenuItem key={`${item}-${index}`}>
-						<Link
-							color={
-								index === 2
-									? "primary"
-									: index === menuItems.length - 1
-									? "danger"
-									: "foreground"
-							}
-							className="w-full flex justify-start gap-3"
-							href="#"
-							size="lg"
-						>
-							{item === "Ayuda" ? (
-								<>
-									<Image src="/Navbar/help.png" alt="help-icon" width={24} height={24} />
-									<>{item}</>
-								</>
-							) : item === "Sobre nosotros" ? (
-								<>
-									{" "}
-									<Image
-										src="/Navbar/about-us.png"
-										alt="help-icon"
-										width={24}
-										height={24}
-									/>
-									<>{item}</>
-								</>
-							) : (
-								<>
-									<Image
-										src="/Navbar/chat-bubble.png"
-										alt="empty-space"
-										width={24}
-										height={24}
-									/>
-									{item}
-								</>
-							)}
-						</Link>
+						{item === "Ayuda" ? (
+							<Link
+								href="/ayuda"
+								className="flex flex-row justify-start items-center gap-2"
+							>
+								<Image src="/Navbar/help.png" alt="help-icon" width={24} height={24} />
+								<p>{item}</p>
+							</Link>
+						) : item === "Sobre nosotros" ? (
+							<Link
+								href="/about"
+								className="flex flex-row justify-start items-center gap-2"
+							>
+								<Image
+									src="/Navbar/about-us.png"
+									alt="help-icon"
+									width={24}
+									height={24}
+								/>
+								<>{item}</>
+							</Link>
+						) : (
+							<>
+								<Image
+									src="/Navbar/chat-bubble.png"
+									alt="empty-space"
+									width={24}
+									height={24}
+								/>
+								{item}
+							</>
+						)}
 					</NavbarMenuItem>
 				))}
 				<div className="relative h-full">
