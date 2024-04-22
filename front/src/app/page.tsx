@@ -8,7 +8,7 @@ export default function Home() {
 
 	return (
 		<>
-			<div className="h-[calc(100dvh-64px)] flex flex-col justify-between bg-slate-50">
+			<div className="h-[90%] flex flex-col justify-between bg-slate-50">
 				{history.length === 0 ? (
 					<div className="text-gris w-10/12 max-w-80 mx-auto my-auto text-center flex flex-col justify-center gap-10 h-full max-h-[calc(100dvh-272px)]">
 						<h1 className="text-lg md:text-2xl">

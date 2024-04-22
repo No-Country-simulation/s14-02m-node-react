@@ -13,8 +13,8 @@ export default function History() {
 						<ChatMessage key={chat.id} chat={chat} />
 					))}
 				</div>
-				{/* El botón de borrar puede quedar en otra parte llamando a cleanHistory */}
-				<div className="flex flex-row justify-center my-3">
+				{/* Este botón de borrar aparece solo en tablet/desktop */}
+				<div className="flex flex-row justify-center my-3 sm:hidden">
 					<Button onClick={() => cleanHistory()}>Borrar conversaciones</Button>
 				</div>
 			</ScrollShadow>
