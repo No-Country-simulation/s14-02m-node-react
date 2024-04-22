@@ -4,9 +4,8 @@ import { Iteam } from "@/interfaces/team.interface";
 import { Tab, Tabs } from "@nextui-org/react";
 import teamMembers from "@/app/about/teamMembers.json";
 import Link from "next/link";
-import Image from "next/image";
-import Footer from "@/components/Footer/footer";
-import icons from "@/components/Footer/ArrayIcons";
+import LinkedinIcon from "@/components/Footer/icons/LinkedinIcon";
+import GithubIcon from "@/components/Footer/icons/GithubIcon";
 
 export default function AboutUs() {
 	const { team }: { team: Iteam[] } = teamMembers;
@@ -36,7 +35,10 @@ export default function AboutUs() {
 						<Tab key="team" title="Conoce el equipo" className="text-md">
 							<div className="grid grid-cols-2 gap-6">
 								{team.map((members) => (
-									<div key={members.id}>
+									<div
+										key={members.id}
+										className="flex flex-col justify-center items-center"
+									>
 										{/* <Image
 											src={members.img}
 											alt="team-member-picture"
@@ -46,8 +48,22 @@ export default function AboutUs() {
 										/> */}
 										<h2 className="font-bold">{members.name}</h2>
 										<p className="text-secundario">{members.rol}</p>
-										<Link href={members.linkedin}>Linkedin</Link>
-										<Link href={members.github}>Github</Link>
+										<div className="flex">
+											<Link
+												href={members.linkedin}
+												target="_blank"
+												rel="noopener noreferrer"
+											>
+												<LinkedinIcon fillColor="blue" width={20} height={20} />
+											</Link>
+											<Link
+												href={members.github}
+												target="_blank"
+												rel="noopener noreferrer"
+											>
+												<GithubIcon fillColor="black" width={20} height={20} />
+											</Link>
+										</div>
 									</div>
 								))}
 							</div>
