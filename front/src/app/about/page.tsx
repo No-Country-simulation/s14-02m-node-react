@@ -25,26 +25,31 @@ export default function AboutUs() {
 					</div>
 					<div className="grid grid-cols-2 md:grid-cols-3 gap-6">
 						{team.map((members) => (
-							<div key={members.id} className="mx-auto text-center">
+							<div
+								key={members.id}
+								className="flex flex-col mx-auto justify-evenly items-center h-[240px] p-2"
+							>
 								<Image
 									src={members.img}
 									alt="team-member-picture"
 									width={140}
 									height={140}
-									className="rounded-full"
+									className="rounded-full max-h-[140px]"
 								/>
-								<h2 className="font-bold">{members.name}</h2>
-								<p className="text-secundario">{members.rol}</p>
+								<h2 className="font-bold text-center">{members.name}</h2>
+								<p className="text-secundario text-center">{members.rol}</p>
 								<div className="flex flex-row gap-2 justify-center">
-									<Link
-										href={members.linkedin}
-										target="_blank"
-										rel="noopener noreferrer"
-									>
+									<Link href={members.linkOne} target="_blank" rel="noopener noreferrer">
 										<LinkedinIcon fillColor="blue" width={20} height={20} />
 									</Link>
-									<Link href={members.github} target="_blank" rel="noopener noreferrer">
-										<GithubIcon fillColor="black" width={20} height={20} />
+									<Link href={members.linkTwo} target="_blank" rel="noopener noreferrer">
+										{members.linkTwo.includes("github") ? (
+											<GithubIcon fillColor="black" width={20} height={20} />
+										) : members.linkTwo.includes("behance") ? (
+											<Image src="/behance.png" width={20} height={20} />
+										) : (
+											<Image src="/genially.png" width={20} height={20} />
+										)}
 									</Link>
 								</div>
 							</div>

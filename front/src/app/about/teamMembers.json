@@ -5,72 +5,72 @@
 			"name": "Felipe Calderon",
 			"rol": "Project Manager",
 			"img": "https://scontent.fpzs1-1.fna.fbcdn.net/v/t39.30808-6/313432503_10230051295725468_1245825349806275648_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeGWVEC9E4TbfLfEzS0aviQ1ZrfehLTlv0tmt96EtOW_S5aXMYtpD3OOpnx7XJ04gW4&_nc_ohc=g7Oa3QyKOpoAb4Lwlsr&_nc_ht=scontent.fpzs1-1.fna&oh=00_AfAj0lIhUNv8dgLQJ2yR0wYXQBrM-e-q9awn5bv5pLAQhA&oe=662C5941",
-			"linkedin": "https://www.linkedin.com/in/felipecalderone/",
-			"github": "https://github.com/felipecalderon"
-		},
-		{
-			"id": 9,
-			"name": "Lucas Id Betan",
-			"rol": "Frontend",
-			"img": "https://avatars.githubusercontent.com/u/131318671?format=jpg&width=440&height=440",
-			"linkedin": "https://www.linkedin.com/in/lucas-id-betan-dev/",
-			"github": "https://github.com/Lidbetan"
+			"linkOne": "https://www.linkedin.com/in/felipecalderone/",
+			"linkTwo": "https://github.com/felipecalderon"
 		},
 		{
 			"id": 3,
 			"name": "Esteban Sayago",
 			"rol": "Backend",
 			"img": "https://media.licdn.com/dms/image/D4E35AQFasOaz4vqJCQ/profile-framedphoto-shrink_400_400/0/1713322301735?e=1714402800&v=beta&t=8mH8dQ24-OugQtPXYvYxabLxepHRc59cn3e0_1S-tF4",
-			"linkedin": "https://www.linkedin.com/in/esteban-sayago/",
-			"github": "https://github.com/Puchinn"
+			"linkOne": "https://www.linkedin.com/in/esteban-sayago/",
+			"linkTwo": "https://github.com/Puchinn"
+		},
+		{
+			"id": 9,
+			"name": "Lucas Id Betan",
+			"rol": "Frontend",
+			"img": "https://avatars.githubusercontent.com/u/131318671?format=jpg&width=440&height=440",
+			"linkOne": "https://www.linkedin.com/in/lucas-id-betan-dev/",
+			"linkTwo": "https://github.com/Lidbetan"
 		},
 		{
 			"id": 2,
 			"name": "Facundo Chiabotto",
 			"rol": "Backend",
-			"img": "url-img",
-			"linkedin": "http://linkedin.com/in/facuch/",
-			"github": "http://linkedin.com/in/facuch/"
+			"img": "/team/facu-chiab.png",
+			"linkOne": "http://linkedin.com/in/facuch/",
+			"linkTwo": "https://github.com/Facurro"
 		},
 		{
 			"id": 4,
 			"name": "Jordan Esquivel",
 			"rol": "Backend",
-			"img": "url-img",
-			"linkedin": "https://www.linkedin.com/in/jordan-joel-esquivel-silva/",
-			"github": "https://github.com/JordanEsquivelS"
+			"img": "/team/jordan.png",
+			"linkOne": "https://www.linkedin.com/in/jordan-joel-esquivel-silva/",
+			"linkTwo": "https://github.com/JordanEsquivelS"
 		},
 		{
 			"id": 5,
 			"name": "Elizabeth Leon",
 			"rol": "UX/UI",
-			"img": "url-img",
-			"linkedin": "https://www.linkedin.com/in/elizabethleonperez/",
-			"github": "https://github.com/ElizabethLeonPerez"
+			"img": "/team/elizabeth.png",
+			"linkOne": "https://www.linkedin.com/in/elizabethleonperez/",
+			"linkTwo": "https://www.behance.net/elizabethleonperez"
 		},
 		{
 			"id": 6,
 			"name": "Handrych Márquez",
 			"rol": "Tester Q/A",
-			"img": "url-img",
-			"linkedin": "https://www.linkedin.com/in/handrych-marquez",
-			"github": "https://github.com/handrych/handrych"
+			"img": "/team/handrych.png",
+			"linkOne": "https://www.linkedin.com/in/handrych-m%C3%A1rquez/",
+			"linkTwo": "https://view.genial.ly/659b1e1f5b2bd5001445d0bc/personal-branding-portafolio-handrych-marquez-tester-qa-manual"
 		},
 		{
 			"id": 7,
 			"name": "Facundo Contreras",
 			"rol": "Frontend",
-			"img": "url-img",
-			"linkedin": "https://www.linkedin.com/in/facundo-ignacio-contreras/",
-			"github": "https://github.com/facundocont"
+			"img": "/team/facu-cont.png",
+			"linkOne": "https://www.linkedin.com/in/facundo-ignacio-contreras/",
+			"linkTwo": "https://github.com/facundocont"
 		},
 		{
 			"id": 8,
 			"name": "Pablo Gutiérrez",
 			"rol": "Frontend",
-			"img": "url-img",
-			"linkedin": "https://www.linkedin.com/in/pablo-ra%C3%BAl-guti%C3%A9rrez/",
-			"github": "https://github.com/Pablo2311"
+			"img": "/team/pablo.png",
+			"linkOne": "https://www.linkedin.com/in/pablo-ra%C3%BAl-guti%C3%A9rrez/",
+			"linkTwo": "https://github.com/Pablo2311"
 		}
 	]
 }
