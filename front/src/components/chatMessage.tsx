@@ -6,13 +6,15 @@ import { filterLanguage } from "@/utils/filterLanguage";
 import Image from "next/image";
 import PlayButton from "./playButton";
 import CopyButton from "./copyButton";
+import ShareButton from "./shareButton";
 
 export default function ChatMessage({ chat }: { chat: IGroupedMessage }) {
 	return (
-		<div className="flex flex-col md:flex-row-reverse md:justify-between md:items-center rounded-xl gap-4 bg-white px-3 py-2 shadow-md">
-			<div className="space-x-2">
+		<div className="flex flex-col md:flex-row-reverse md:justify-between md:items-center rounded-xl gap-4 bg-white px-2 py-2 shadow-md">
+			<div className="space-x-1">
 				<PlayButton chat={chat} />
 				<CopyButton copyText={chat.response.message} />
+				<ShareButton />
 			</div>
 			<div className="flex flex-col gap-4">
 				<ResponseMessageBox message={chat.response} />
