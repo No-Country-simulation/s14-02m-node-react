@@ -12,10 +12,10 @@ export default function History() {
 					{history.map((chat) => (
 						<ChatMessage key={chat.id} chat={chat} />
 					))}
-					<Button className="w-1/4 bg-primario text-white" onClick={cleanHistory}>
-						{" "}
-						Eliminar traducciones{" "}
-					</Button>
+					{/* Este botón de borrar aparece solo en tablet/desktop */}
+					<div className="hidden md:block">
+						<Button className="w-1/4 bg-primario text-white" onClick={() => cleanHistory()}>Borrar conversaciones</Button>
+					</div>
 				</div>
 			</ScrollShadow>
 		);

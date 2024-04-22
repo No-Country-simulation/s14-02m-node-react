@@ -6,6 +6,7 @@ import { filterLanguage } from "@/utils/filterLanguage";
 import Image from "next/image";
 import PlayButton from "./playButton";
 import CopyButton from "./copyButton";
+import ShareButton from "./shareButton";
 
 export default function ChatMessage({ chat }: { chat: IGroupedMessage }) {
 	return (
@@ -13,6 +14,7 @@ export default function ChatMessage({ chat }: { chat: IGroupedMessage }) {
 			<div className="space-x-2">
 				<PlayButton chat={chat} />
 				<CopyButton copyText={chat.response.message} />
+				<ShareButton message={chat.response.message}/>
 			</div>
 			<div className="flex flex-col gap-4">
 				<ResponseMessageBox message={chat.response} />

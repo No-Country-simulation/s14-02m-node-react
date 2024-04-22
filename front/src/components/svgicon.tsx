@@ -6,7 +6,7 @@ export default function SVGIcon({
 	if (icon === "listen")
 		return (
 			<svg
-				className="w-4 h-4 text-white"
+				className="w-4 h-4"
 				stroke="currentColor"
 				fill="currentColor"
 				strokeWidth="0"
@@ -19,7 +19,7 @@ export default function SVGIcon({
 	else if (icon === "play")
 		return (
 			<svg
-				className="w-4 h-4 text-white"
+				className="w-4 h-4"
 				stroke="currentColor"
 				fill="currentColor"
 				strokeWidth="0"
@@ -32,7 +32,7 @@ export default function SVGIcon({
 	else if (icon === "copy")
 		return (
 			<svg
-				className="w-4 h-4 text-white"
+				className="w-4 h-4"
 				stroke="currentColor"
 				fill="currentColor"
 				strokeWidth="0"
@@ -47,7 +47,7 @@ export default function SVGIcon({
 	else if (icon === "share")
 		return (
 			<svg
-				className="w-4 h-4 text-white"
+				className="w-4 h-4"
 				stroke="currentColor"
 				fill="currentColor"
 				strokeWidth="0"
