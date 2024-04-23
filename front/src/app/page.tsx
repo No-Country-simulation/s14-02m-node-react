@@ -9,7 +9,7 @@ export default function Home() {
 
 	return (
 		<>
-			<div className="h-[90%] flex flex-col justify-between bg-slate-50">
+			<div className="h-[92%] flex flex-col justify-between bg-slate-50">
 				{history.length === 0 ? (
 					<ScrollShadow size={20} hideScrollBar>
 						<div className="text-gris py-6 w-10/12 max-w-80 mx-auto my-auto text-center flex flex-col justify-start gap-10 h-full max-h-[calc(100dvh-272px)]">

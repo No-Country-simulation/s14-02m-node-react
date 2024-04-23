@@ -104,24 +104,24 @@ export default function Nav() {
 				)}
 			</NavbarContent>
 			{/* Acá comienza el menu lateral */}
-			<NavbarMenu>
-				{
-					menuItems.map(menu => (
-						<NavbarMenuItem key={menu.name} isActive={menu.path === path}>
-							<Link
-								href={menu.path}
-								className={`flex flex-row justify-start items-center gap-2 ${menu.path === path ? 'text-primario' : 'text-gris'}`}
-							>
-								<Image src={menu.image} alt="help-icon" width={24} height={24} />
-								{menu.name}
-							</Link>
-						</NavbarMenuItem>
-					))
-				}
-				<div className="relative h-full">
-					<div className="absolute bottom-0">
-						<Footer appName="TalkIAmos" iconItems={icons} />
-					</div>
+			<NavbarMenu className="h-screen flex flex-col justify-between">
+				<div>
+					{
+						menuItems.map(menu => (
+							<NavbarMenuItem className="my-3" key={menu.name} isActive={menu.path === path}>
+								<Link
+									href={menu.path}
+									className={`flex flex-row justify-start items-center gap-2 ${menu.path === path ? 'text-primario' : 'text-gris'}`}
+								>
+									<Image src={menu.image} alt="help-icon" width={24} height={24} />
+									{menu.name}
+								</Link>
+							</NavbarMenuItem>
+						))
+					}
+				</div>
+				<div className="mb-10">
+					<Footer appName="TalkIAmos" iconItems={icons} />
 				</div>
 			</NavbarMenu>
 		</Navbar>
