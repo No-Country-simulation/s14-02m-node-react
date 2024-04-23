@@ -12,7 +12,7 @@
 			"id": 3,
 			"name": "Esteban Sayago",
 			"rol": "Backend",
-			"img": "https://media.licdn.com/dms/image/D4E35AQFasOaz4vqJCQ/profile-framedphoto-shrink_400_400/0/1713322301735?e=1714402800&v=beta&t=8mH8dQ24-OugQtPXYvYxabLxepHRc59cn3e0_1S-tF4",
+			"img": "/team/esteban.jpg",
 			"linkOne": "https://www.linkedin.com/in/esteban-sayago/",
 			"linkTwo": "https://github.com/Puchinn"
 		},
@@ -36,7 +36,7 @@
 			"id": 4,
 			"name": "Jordan Esquivel",
 			"rol": "Backend",
-			"img": "/team/jordan.png",
+			"img": "/team/Jordan.jpg",
 			"linkOne": "https://www.linkedin.com/in/jordan-joel-esquivel-silva/",
 			"linkTwo": "https://github.com/JordanEsquivelS"
 		},

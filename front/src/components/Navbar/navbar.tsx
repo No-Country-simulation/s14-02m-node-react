@@ -49,17 +49,17 @@ export default function Nav() {
 					className="sm:hidden"
 				/>
 				<NavbarBrand>
-					<Link href="/">
+					<Link href="/" className="flex flex-row gap-2">
 						<Image
 							src="/Navbar/app-logo.png"
 							alt="Brand icon"
 							width={30}
 							height={30}
 						/>
+						<p className="font-bold text-inherit text-slate-700">
+							Talk<span className="uppercase text-primario ">ia</span>mos
+						</p>
 					</Link>
-					<p className="font-bold text-inherit">
-						Talk<span className="uppercase text-primario ">ia</span>mos
-					</p>
 				</NavbarBrand>
 			</NavbarContent>
 
@@ -79,7 +79,7 @@ export default function Nav() {
 			</NavbarContent>
 			{/* Boton de borrar historial, aparece con breakpoints md */}
 			<NavbarContent justify="end">
-				{history.length > 0 && path === '/' ? (
+				{history.length > 0 && path === '/' && !isMenuOpen ? (
 					<NavbarItem>
 						<Button
 							className="md:hidden"

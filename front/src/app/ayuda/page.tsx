@@ -28,9 +28,9 @@ export default function AyudaPage() {
 	return (
 		<>
 			<ScrollShadow size={20} hideScrollBar>
-				<div className="w-full h-full flex flex-col justify-start items-center">
-					<div className="w-full max-w-2xl flex flex-col justify-center items-center p-4">
-						<h1 className="text-center text-2xl">Ayuda</h1>
+				<div className="w-full flex flex-col justify-start items-center min-h-screen">
+					<div className="w-full max-w-2xl flex flex-col justify-center items-center p-4 mb-10">
+					<h1 className="text-center font-bold text-2xl mb-3">Ayuda</h1>
 						<Tabs
 							aria-label="Options"
 							color="primary"
@@ -44,7 +44,7 @@ export default function AyudaPage() {
 							}}
 						>
 							<Tab key="FAQ" title="FAQs" className="w-full text-lg">
-								<Accordion variant="light" className="p-4">
+								<Accordion variant="light" className="p-4" selectionMode="multiple" defaultExpandedKeys={["0"]}>
 									{faq.map((f, index) => (
 										<AccordionItem
 											key={index}
