@@ -40,7 +40,7 @@ export default function PlayButton({ chat }: { chat: IGroupedMessage }) {
 	if (chat.audioUrl)
 		return (
 			<Button
-				className="min-w-[200px] space-x-2 bg-secundario text-white"
+				className="min-w-fit md:min-w-[200px] px-2 space-x-2 bg-secundario text-white"
 				onClick={play}
 			>
 				<SVGIcon icon="play" /> <span>Reproducir</span>
@@ -50,7 +50,7 @@ export default function PlayButton({ chat }: { chat: IGroupedMessage }) {
 	else
 		return (
 			<Button
-				className="min-w-[200px] space-x-2 bg-secundario text-white"
+				className="min-w-fit md:min-w-[200px] px-2 space-x-2 bg-secundario text-white"
 				isIconOnly={true}
 				onClick={handlePlay}
 			>

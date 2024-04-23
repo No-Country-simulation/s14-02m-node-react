@@ -25,6 +25,11 @@ export default function Nav() {
 	const path = usePathname()
 	const menuItems = [
 		{
+			name: 'Inicio',
+			path: '/',
+			image: '/icon-192x192.png'
+		},
+		{
 			name: 'Ayuda',
 			path: '/ayuda',
 			image: '/Navbar/help.png'
@@ -74,7 +79,7 @@ export default function Nav() {
 			</NavbarContent>
 			{/* Boton de borrar historial, aparece con breakpoints md */}
 			<NavbarContent justify="end">
-				{history.length > 0 ? (
+				{history.length > 0 && path === '/' ? (
 					<NavbarItem>
 						<Button
 							className="md:hidden"
