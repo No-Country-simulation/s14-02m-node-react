@@ -8,7 +8,7 @@ export default function History() {
 	if (history.length > 0)
 		return (
 			<ScrollShadow size={20} visibility="top" hideScrollBar>
-				<div className="flex flex-col md:w-4/5 lg:w-3/5 gap-4 mt-4 px-7 md:px-0 mx-auto rounded-xl">
+				<div className="flex flex-col md:w-4/5 lg:w-3/5 gap-4 mt-4 px-3 md:px-0 mx-auto rounded-xl">
 					{/* Este botón de borrar aparece solo en tablet/desktop */}
 					<div className="hidden md:block mx-auto min-w-fit">
 						<Button
