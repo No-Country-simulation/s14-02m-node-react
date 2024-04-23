@@ -22,6 +22,7 @@
 .autocomplete > div > div {
     background-color: white;
     color: #e55958;
+    border-radius: 99px;
 }
 
 .autocomplete > div > div > div > div > input {

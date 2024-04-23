@@ -24,7 +24,7 @@ export default function RootLayout({
 					<Nav />
 					{children}
 					<div className="hidden md:block">
-						<Footer appName="Transiapp" iconItems={icons} />
+						<Footer appName="Talkiamos" iconItems={icons} />
 					</div>
 				</NextUiProvider>
 			</body>

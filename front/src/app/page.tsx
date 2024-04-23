@@ -12,7 +12,7 @@ export default function Home() {
 			<div className="h-[90%] flex flex-col justify-between bg-slate-50">
 				{history.length === 0 ? (
 					<ScrollShadow size={20} hideScrollBar>
-						<div className="text-gris w-10/12 max-w-80 mx-auto my-auto text-center flex flex-col justify-start gap-10 h-full max-h-[calc(100dvh-272px)]">
+						<div className="text-gris py-6 w-10/12 max-w-80 mx-auto my-auto text-center flex flex-col justify-start gap-10 h-full max-h-[calc(100dvh-272px)]">
 							<h1 className="text-lg md:text-2xl">
 								¡Bienvenido a <br />
 								Talk<span className="text-[#e55958]/90">IA</span>mos!
@@ -21,9 +21,7 @@ export default function Home() {
 								Traduce de manera simple y eficaz todo lo que quieras
 							</h2>
 							<p className="text-sm md:text-base">
-								Esta aplicación no guarda ni registra las traducciones solicitadas si no
-								te encontrás registrado. Para registrarte hace click{" "}
-								<a href="#">aquí</a>
+								Esta aplicación no guarda ni registra las traducciones solicitadas, tu historial solo queda almacenado en tú dispositivo.
 							</p>
 						</div>
 					</ScrollShadow>

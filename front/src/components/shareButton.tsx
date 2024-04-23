@@ -1,6 +1,6 @@
 import { Button, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, useDisclosure } from "@nextui-org/react";
-import { FacebookShareButton, FacebookIcon, XIcon, TwitterShareButton, LinkedinShareButton, LinkedinIcon, WhatsappShareButton, WhatsappIcon, EmailShareButton, EmailIcon } from "react-share";
-import InstagramIcon from "./Footer/icons/InstagramIcon";
+import { FacebookShareButton, FacebookIcon, XIcon, TwitterShareButton, LinkedinShareButton, LinkedinIcon, WhatsappShareButton, WhatsappIcon } from "react-share";
+
 import SVGIcon from "./svgicon";
 
 export default function ShareButton({ message }: { message: string }) {
@@ -46,15 +46,17 @@ export default function ShareButton({ message }: { message: string }) {
                                     <TwitterShareButton title={message} url="https://talkiamos.vercel.app/">
                                         <XIcon className="rounded-lg w-12 h-12" />
                                     </TwitterShareButton>
-                                    <LinkedinShareButton content={message} title={message} url="https://talkiamos.vercel.app/">
-                                        <LinkedinIcon className="rounded-lg w-12 h-12" />
-                                    </LinkedinShareButton>
                                     <WhatsappShareButton content={message} title={message} url="https://talkiamos.vercel.app/">
                                         <WhatsappIcon className="rounded-lg w-12 h-12" />
                                     </WhatsappShareButton>
-                                    {/* <EmailShareButton >
+                                    {/* 
+                                    <LinkedinShareButton title={message} summary={message} url="https://talkiamos.vercel.app/">
+                                        <LinkedinIcon className="rounded-lg w-12 h-12" />
+                                    </LinkedinShareButton>
+                                    <EmailShareButton >
                                         <EmailIcon className="rounded-lg w-12 h-12"/>
-                                    </EmailShareButton> */}
+                                    </EmailShareButton> 
+                                    */}
                                 </div>
                             </ModalFooter>
                         </>

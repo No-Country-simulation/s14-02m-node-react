@@ -21,7 +21,7 @@ const icons: footerItem[] = [
 			/>
 		),
 		label: "Facebook",
-		link: "",
+		link: "https://talkiamos.vercel.app/",
 		isValid: true,
 	},
 	{
@@ -33,7 +33,7 @@ const icons: footerItem[] = [
 			/>
 		),
 		label: "Instagram",
-		link: "",
+		link: "https://talkiamos.vercel.app/",
 		isValid: true,
 	},
 	{
@@ -45,7 +45,7 @@ const icons: footerItem[] = [
 			/>
 		),
 		label: "Twitter",
-		link: "",
+		link: "https://talkiamos.vercel.app/",
 		isValid: true,
 	},
 	{
@@ -69,7 +69,7 @@ const icons: footerItem[] = [
 			/>
 		),
 		label: "LinkedIn",
-		link: "",
+		link: "https://talkiamos.vercel.app/",
 		isValid: true,
 	},
 ];

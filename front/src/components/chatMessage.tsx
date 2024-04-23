@@ -13,7 +13,7 @@ import DeleteIcon from "@/components/Navbar/deleteIcon";
 export default function ChatMessage({ chat }: { chat: IGroupedMessage }) {
 	const { cleanOneMessage } = useHistoryStore()
 	return (
-		<div className="flex flex-col md:flex-row-reverse md:justify-between md:items-center rounded-xl gap-2 bg-white px-3 py-2 shadow-md">
+		<div className="flex flex-col md:flex-row-reverse md:justify-between md:items-center rounded-xl gap-2 bg-blue-100/60 px-3 py-2 shadow-md">
 			<div className="flex flex-row gap-2">
 				<PlayButton chat={chat} />
 				<CopyButton copyText={chat.response.message} />
@@ -22,7 +22,7 @@ export default function ChatMessage({ chat }: { chat: IGroupedMessage }) {
 					<DeleteIcon fillColor="#EF4565" />
 				</div>
 			</div>
-			<div className="flex flex-col gap-4">
+			<div className="flex flex-col gap-4 md:max-w-[60%]">
 				<ResponseMessageBox message={chat.response} />
 				<ClientMessageBox message={chat.client} />
 			</div>

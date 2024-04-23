@@ -68,34 +68,41 @@ export default function UserForm() {
 				});
 				if (response.ok) {
 					const parseRes: IBackendResponse = await response.json();
-
 					if (parseRes.error) {
 						setMessage("");
 						setOpenError(true);
 						setErrorMsg(parseRes.error);
 						setLimitMsg({ ...limitMsg, actual: 0 });
-						setListenLoading(false);
-					} else {
-						const messageBubble: IGroupedMessage = {
-							id: msgId,
-							client: {
-								langCode: parseRes.from as ILanguageCodes,
-								message: tempUserMessage.message,
-								rol: ChatRol.USER,
-							},
-							response: {
-								langCode: tempUserMessage.langCode as ILanguageCodes,
-								message: parseRes.translated,
-								rol: ChatRol.IA,
-							},
-							audioUrl: null,
-						};
-						//Actualiza el store con la solicitud del usuario y la respuesta de la API
-						updateHistory(messageBubble);
+						return setListenLoading(false);
+					} 
+					if (parseRes.from === tempUserMessage.langCode) {
 						setMessage("");
+						setOpenError(true);
+						setErrorMsg('No es posible traducir al mismo idioma original');
 						setLimitMsg({ ...limitMsg, actual: 0 });
-						setListenLoading(false);
+						return setListenLoading(false);
 					}
+					// si pasa las validaciones tamos ok para crear la burbuja de mensajes
+					const messageBubble: IGroupedMessage = {
+						id: msgId,
+						client: {
+							langCode: parseRes.from as ILanguageCodes,
+							message: tempUserMessage.message,
+							rol: ChatRol.USER,
+						},
+						response: {
+							langCode: tempUserMessage.langCode as ILanguageCodes,
+							message: parseRes.translated,
+							rol: ChatRol.IA,
+						},
+						audioUrl: null,
+					};
+					//Actualiza el store con la solicitud del usuario y la respuesta de la API
+					updateHistory(messageBubble);
+					//resetea los campos
+					setMessage("");
+					setLimitMsg({ ...limitMsg, actual: 0 });
+					setListenLoading(false);
 				}
 			} else {
 				alert("Por favor complete todos los campos...");
@@ -121,14 +128,14 @@ export default function UserForm() {
 	return (
 		<>
 			<form
-				className="flex flex-col gap-4 justify-center items-center md:w-4/5 lg:w-3/5 mx-auto w-full bg-transparent"
+				className="flex flex-col pt-3 gap-4 justify-center items-center md:w-4/5 lg:w-3/5 mx-auto w-full bg-transparent"
 				onSubmit={handleSubmit}
 			>
 				<Autocomplete
 					radius="full"
 					variant="bordered"
 					placeholder="Idioma"
-					label="Seleccione Idioma"
+					label="Traducir a:"
 					labelPlacement="outside-left"
 					size="md"
 					onSelectionChange={handleSelectChange}
@@ -152,9 +159,8 @@ export default function UserForm() {
 					onChange={handleInputChange}
 				/>
 				<p
-					className={`w-full text-xs text-right pr-3 -mt-10 mb-2 ${
-						limitMsg.actual === limitMsg.limit && "font-semibold text-primario"
-					}`}
+					className={`w-full text-xs text-right pr-3 -mt-10 mb-2 ${limitMsg.actual === limitMsg.limit && "font-semibold text-primario"
+						}`}
 				>
 					{limitMsg.actual}/{limitMsg.limit}
 				</p>
