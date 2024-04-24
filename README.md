@@ -10,7 +10,7 @@ TalkIAmos es unaTalkIAmos es una herramienta de traducción de texto que utiliza
 
 **Frontend:** 
 
-![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB) ![NextUI](https://img.shields.io/badge/next%20UI-000000?style=for-the-badge&logo=nextdotjs&logoColor=white) ![Typescript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white) ![Zustand](https://img.shields.io/badge/zustand-%2320232a.svg?style=for-the-badge) ![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB) ![NextUI](https://img.shields.io/badge/next%20UI-000000?style=for-the-badge&logo=nextdotjs&logoColor=white) ![Typescript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white) ![Zustand](https://img.shields.io/badge/zustand-%2320232a.svg?style=for-the-badge) ![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white) ![PWA](https://img.shields.io/badge/PWA-000000?style=for-the-badge&=nextdotjs&logoColor=white)
 
 **Backend:** 
 
@@ -59,6 +59,10 @@ Siguiendo esos pasos y  estando posicionado con la terminal en la carpeta front,
 Finalmente haga Ctrl + Click en el link local: 
 
 ![run-dev](https://github.com/No-Country/s14-02m-node-react/assets/131318671/b5106f68-7dde-4849-93c7-ebe204542f5b)
+
+También puede instalarse como aplicación de la siguiente manera: 
+
+![pwa](https://github.com/No-Country/s14-02m-node-react/assets/131318671/83229bb3-d95d-4c21-8c51-9e78b9d4da53)
 
 
 ## Equipo
